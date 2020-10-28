@@ -103,10 +103,10 @@ Set the cover image of an existing epub
 
 Add the following lines to your `app` module's `build.gradle` file:
 
+[TODO]
+
         repositories {
-            maven {
-                url 'https://github.com/psiegman/mvn-repo/raw/master/releases'
-            }
+              mavenCentral()
         }
 
         dependencies {
