@@ -22,8 +22,8 @@ signing {
   sign(publishing.publications)
 }
 
-val ossrhUsername: String by project
-val ossrhPassword: String by project
+val ossrhUsername: String? by project
+val ossrhPassword: String? by project
 
 publishing {
   publications {
