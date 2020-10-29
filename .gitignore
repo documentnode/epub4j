@@ -31,3 +31,4 @@ build
 /test1_book1.epub
 **/build/
 **/.gradle
+!**/gradle-wapper.jar
