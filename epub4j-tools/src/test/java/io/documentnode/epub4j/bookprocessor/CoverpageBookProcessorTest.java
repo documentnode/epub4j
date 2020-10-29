@@ -11,7 +11,8 @@ public class CoverpageBookProcessorTest extends TestCase {
 				"/foo/index.html", "../sub/bar.html", "/sub/bar.html"
 		};
 		for (int i = 0; i < testData.length; i+= 3) {
-			String actualResult = CoverpageBookProcessor.calculateAbsoluteImageHref(testData[i + 1], testData[i]);
+			String actualResult = CoverPageBookProcessor
+          .calculateAbsoluteImageHref(testData[i + 1], testData[i]);
 			assertEquals(testData[i + 2], actualResult);
 		}
 	}

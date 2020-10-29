@@ -1,6 +1,7 @@
 package io.documentnode.epub4j.epub;
 
 import io.documentnode.epub4j.Constants;
+import io.documentnode.minilog.Logger;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -12,8 +13,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import org.kxml2.io.KXmlSerializer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.xml.sax.EntityResolver;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -27,8 +26,7 @@ import org.xmlpull.v1.XmlSerializer;
  */
 public class EpubProcessorSupport {
 
-  private static final Logger log = LoggerFactory
-      .getLogger(EpubProcessorSupport.class);
+  private static final Logger log = Logger.create(EpubProcessorSupport.class);
 
   protected static DocumentBuilderFactory documentBuilderFactory;
 

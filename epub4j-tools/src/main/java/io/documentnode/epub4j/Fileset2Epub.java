@@ -1,6 +1,6 @@
 package io.documentnode.epub4j;
 
-import io.documentnode.epub4j.bookprocessor.CoverpageBookProcessor;
+import io.documentnode.epub4j.bookprocessor.CoverPageBookProcessor;
 import io.documentnode.epub4j.bookprocessor.DefaultBookProcessorPipeline;
 import io.documentnode.epub4j.bookprocessor.XslBookProcessor;
 import io.documentnode.epub4j.epub.BookProcessorPipeline;
@@ -87,7 +87,7 @@ public class Fileset2Epub {
 		if(StringUtils.isNotBlank(coverImage)) {
 //			book.getResourceByHref(book.getCoverImage());
 			book.setCoverImage(new Resource(VFSUtil.resolveInputStream(coverImage), coverImage));
-			epubCleaner.getBookProcessors().add(new CoverpageBookProcessor());
+			epubCleaner.getBookProcessors().add(new CoverPageBookProcessor());
 		}
 		
 		if(StringUtils.isNotBlank(title)) {

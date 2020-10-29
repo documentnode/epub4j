@@ -29,3 +29,5 @@ hs_err_pid*
 build
 /.idea/
 /test1_book1.epub
+**/build/
+**/.gradle

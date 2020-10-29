@@ -1,11 +1,12 @@
 
 Usage: make options...
 
-Option      Description
-------      -----------
-clean       Clean build directories of projects
-pull        Pull latest source code including submodules
-build       Build projects with tests
-build-fast  Build projects without tests
-publish     Publish libraries to Maven local
+Option          Description
+------          -----------
+clean           Clean build directories of projects
+pull            Pull latest source code including submodules
+build           Build projects with tests
+build-fast      Build projects without tests
+publish         Publish libraries to Maven local
+publish-remote  Publish libraries to Maven Central
 
