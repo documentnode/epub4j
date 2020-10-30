@@ -21,7 +21,9 @@ Maintained by [Document Node](https://documentnode.io).
 
 ## Build status
 
-[![Build Status](https://travis-ci.org/documentnode/epub4j.svg?branch=main)](https://travis-ci.org/documentnode/epub4j)
+[![MiniLog Actions Status](https://github.com/documentnode/epub4j/workflows/Java%20CI%20with%20Gradle/badge.svg)](https://github.com/documentnode/epub4j/actions)
+
+[![Travis Build Status](https://travis-ci.org/documentnode/epub4j.svg?branch=main)](https://travis-ci.org/documentnode/epub4j)
 
 ## Command line examples
 
