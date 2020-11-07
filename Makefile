@@ -19,10 +19,10 @@ build:
 build-fast:
 	./gradlew build -Pcheck=false -x test
 
-publish:
+publish: build
 	rm -rf $$HOME/.m2/repository/io/documentnode/epub4j-core
-	./gradlew build publishToMavenLocal
+	./gradlew publishToMavenLocal
 
-publish-remote:
-	./gradlew build publishMavenJavaPublicationToMavenRepository
+publish-remote: publish
+	./gradlew publishMavenJavaPublicationToMavenRepository
 
