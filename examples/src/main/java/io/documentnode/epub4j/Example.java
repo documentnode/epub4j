@@ -1,11 +1,13 @@
 package io.documentnode.epub4j;
 
-import java.io.FileOutputStream;
 import io.documentnode.epub4j.domain.Author;
 import io.documentnode.epub4j.domain.Book;
+import io.documentnode.epub4j.domain.Date;
+import io.documentnode.epub4j.domain.Date.Event;
 import io.documentnode.epub4j.domain.Resource;
 import io.documentnode.epub4j.domain.TOCReference;
 import io.documentnode.epub4j.epub.EpubWriter;
+import java.io.FileOutputStream;
 
 /**
  * @author jake
@@ -22,10 +24,19 @@ public class Example {
 
       // Add an Author
       book.getMetadata().addAuthor(new Author("Joe", "Tester"));
+      book.getMetadata().addAuthor(new Author("Jill", "Second"));
+      book.getMetadata().addContributor(new Author("Mike", "Contrib"));
+      book.getMetadata().addPublisher("Document Node 1.4");
+      book.getMetadata()
+          .addDate(new Date(new java.util.Date(), Event.CREATION));
+      book.getMetadata()
+          .addDate(new Date(new java.util.Date(), Event.MODIFICATION));
+      book.getMetadata()
+          .addDate(new Date(new java.util.Date(), Event.PUBLICATION));
 
       // Set cover image
       book.setCoverImage(new Resource(
-          Example.class.getResourceAsStream("/book1/test_cover.png"),
+          Example.class.getResourceAsStream("/book1/cover.png"),
           "cover.png"));
 
       // Add Chapter 1

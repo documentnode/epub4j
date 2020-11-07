@@ -1,10 +1,37 @@
 plugins {
   id("io.documentnode.epub4j.java-library-conventions")
+
+  // https://github.com/lessthanoptimal/gversion-plugin
+  id("com.peterabeles.gversion") version "1.9"
 }
 
 dependencies {
   implementation("net.sf.kxml:kxml2:2.3.0")
   implementation("xmlpull:xmlpull:1.1.3.4d_b4_min")
+}
+
+gversion {
+  // path is relative to the sub-project by default
+  // Gradle variables can also be used
+  // E.g. "${project.rootDir}/module/src/main/java"
+  srcDir = "src/main/java/"
+  classPackage = "io.documentnode.epub4j.util"
+  // optional. If not specified GVersion is used
+  className = "GVersion"
+  // optional. This is the default
+  dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+  // optional. UTC is default
+  timeZone = "UTC"
+  // optional. print out extra debug information
+  debug = false
+  // optional. Can be Java or Kotlin, case insensitive
+  language = "java"
+  // optional. Force types to be explicitly printed
+  explicitType = false
+}
+
+tasks.compileJava {
+  dependsOn(tasks.createVersionFile)
 }
 
 tasks.withType<Javadoc> {

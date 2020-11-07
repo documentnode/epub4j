@@ -1,4 +1,4 @@
-package io.documentnode.epub4j.utilities;
+package io.documentnode.epub4j.util;
 /*
  * Copyright (c) 2006, John Kristian
  * All rights reserved.
