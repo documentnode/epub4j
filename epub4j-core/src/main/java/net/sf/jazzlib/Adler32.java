@@ -75,7 +75,7 @@ package net.sf.jazzlib;
  * first sum, which is just a checksum. That 65521 is prime is important to
  * avoid a possible large class of two-byte errors that leave the check
  * unchanged. (The Fletcher checksum uses 255, which is not prime and which also
- * makes the Fletcher check insensitive to single byte changes 0 <-> 255.)
+ * makes the Fletcher check insensitive to single byte changes 0 &lt;-&gt; 255.)
  * <p>
  * The sum s1 is initialized to 1 instead of zero to make the length of the
  * sequence part of s2, so that the length does not have to be checked

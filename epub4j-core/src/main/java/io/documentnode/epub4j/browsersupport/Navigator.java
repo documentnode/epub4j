@@ -172,7 +172,7 @@ public class Navigator implements Serializable {
 	/**
 	 * The current position within the spine.
 	 * 
-	 * @return something < 0 if the current position is not within the spine.
+	 * @return something &lt; 0 if the current position is not within the spine.
 	 */
 	public int getCurrentSpinePos() {
 		return currentSpinePos;

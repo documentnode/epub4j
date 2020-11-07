@@ -170,7 +170,7 @@ public class ResourcesLoaderTest {
     Assert.assertEquals("book1", resource.getId());
     Assert.assertEquals("OEBPS/book1.css", resource.getHref());
     Assert.assertEquals(MediatypeService.CSS, resource.getMediaType());
-    Assert.assertEquals(65, resource.getData().length);
+    Assert.assertEquals(74, resource.getData().length);
     expectedData = IOUtil
         .toByteArray(this.getClass().getResourceAsStream("/book1/book1.css"));
     Assert.assertArrayEquals(expectedData, resource.getData());
@@ -180,7 +180,7 @@ public class ResourcesLoaderTest {
     Assert.assertEquals("chapter1", resource.getId());
     Assert.assertEquals("OEBPS/chapter1.html", resource.getHref());
     Assert.assertEquals(MediatypeService.XHTML, resource.getMediaType());
-    Assert.assertEquals(246, resource.getData().length);
+    Assert.assertEquals(283, resource.getData().length);
     expectedData = IOUtil.toByteArray(
         this.getClass().getResourceAsStream("/book1/chapter1.html"));
     Assert.assertArrayEquals(expectedData, resource.getData());

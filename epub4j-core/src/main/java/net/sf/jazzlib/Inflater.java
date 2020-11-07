@@ -250,7 +250,7 @@ public class Inflater {
 	 * you should check, whether needsDictionary(), needsInput() or finished()
 	 * returns true, to determine why no further output is produced.
 	 *
-	 * @param buffer
+	 * @param buf
 	 *            the output buffer.
 	 * @return the number of bytes written to the buffer, 0 if no further output
 	 *         can be produced.
@@ -268,7 +268,7 @@ public class Inflater {
 	 * you should check, whether needsDictionary(), needsInput() or finished()
 	 * returns true, to determine why no further output is produced.
 	 *
-	 * @param buffer
+	 * @param buf
 	 *            the output buffer.
 	 * @param off
 	 *            the offset into buffer where the output should start.
@@ -403,7 +403,7 @@ public class Inflater {
 	/**
 	 * Sets the input. This should only be called, if needsInput() returns true.
 	 *
-	 * @param buffer
+	 * @param buf
 	 *            the input.
 	 * @exception IllegalStateException
 	 *                if no input is needed.
@@ -415,7 +415,7 @@ public class Inflater {
 	/**
 	 * Sets the input. This should only be called, if needsInput() returns true.
 	 *
-	 * @param buffer
+	 * @param buf
 	 *            the input.
 	 * @param off
 	 *            the offset into buffer where the input starts.

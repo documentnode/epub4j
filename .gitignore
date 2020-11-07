@@ -32,3 +32,4 @@ build
 **/build/
 **/.gradle
 !**/gradle-wapper.jar
+/testbook1.epub

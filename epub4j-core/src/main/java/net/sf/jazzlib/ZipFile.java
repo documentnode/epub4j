@@ -361,8 +361,8 @@ public class ZipFile implements ZipConstants {
 	/**
 	 * Searches for a zip entry in this archive with the given name.
 	 *
-	 * @param the
-	 *            name. May contain directory components separated by slashes
+	 * @param name
+	 *            the name. May contain directory components separated by slashes
 	 *            ('/').
 	 * @return the zip entry, or null if no entry with that name exists.
 	 */
