@@ -32,7 +32,7 @@ Set the author of an existing epub
 ```bash
 make build
 cd epub4j-tools/build/libs
-java -jar epub4j-tools-4.3-SNAPSHOT-all.jar --in input.epub --out result.epub --author Tester,Joe
+java -jar epub4j-tools-4.2-SNAPSHOT-all.jar --in input.epub --out result.epub --author Tester,Joe
 ```
 
 Set the cover image of an existing epub
@@ -40,7 +40,7 @@ Set the cover image of an existing epub
 ```bash
 make build
 cd epub4j-tools/build/libs
-java -jar epub4j-tools-4.3-SNAPSHOT-all.jar --in input.epub --out result.epub --cover-image my_cover.jpg
+java -jar epub4j-tools-4.2-SNAPSHOT-all.jar --in input.epub --out result.epub --cover-image my_cover.jpg
 ```
 
 ## Creating an epub programmatically
@@ -130,7 +130,7 @@ repositories {
 }
 
 dependencies {
-  implementation('io.documentnode.epub4j:epub4j-core:4.2') {
+  implementation('io.documentnode.epub4j:epub4j-core:4.1') {
     exclude group: 'xmlpull'
   }
 }
