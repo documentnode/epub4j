@@ -6,7 +6,7 @@ public enum ManifestItemRefProperties implements ManifestProperties {
 	
 	private String name;
 	
-	private ManifestItemRefProperties(String name) {
+	ManifestItemRefProperties(String name) {
 		this.name = name;
 	}
 	

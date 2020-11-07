@@ -19,7 +19,6 @@ import org.xmlpull.v1.XmlSerializer;
  * Generates an epub file. Not thread-safe, single use object.
  *
  * @author paul
- *
  */
 public class EpubWriter {
 

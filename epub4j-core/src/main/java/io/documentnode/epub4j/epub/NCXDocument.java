@@ -30,7 +30,6 @@ import org.xmlpull.v1.XmlSerializer;
  * Writes the ncx document as defined by namespace http://www.daisy.org/z3986/2005/ncx/
  *
  * @author paul
- *
  */
 public class NCXDocument {
 

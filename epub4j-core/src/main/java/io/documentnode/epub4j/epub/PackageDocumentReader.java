@@ -85,8 +85,8 @@ public class PackageDocumentReader extends PackageDocumentBase {
    * @param packageDocument
    * @param packageHref
    * @param epubReader
-   * @param book
-   * @param resourcesByHref
+   * @param resources
+   * @param idMapping
    * @return a Map with resources, with their id's as key.
    */
   private static Resources readManifest(Document packageDocument,
@@ -219,9 +219,8 @@ public class PackageDocumentReader extends PackageDocumentBase {
    * Reads the document's spine, containing all sections in reading order.
    *
    * @param packageDocument
-   * @param epubReader
-   * @param book
-   * @param resourcesById
+   * @param resources
+   * @param idMapping
    * @return the document's spine, containing all sections in reading order.
    */
   private static Spine readSpine(Document packageDocument, Resources resources,
@@ -303,8 +302,8 @@ public class PackageDocumentReader extends PackageDocumentBase {
    * Here we try several ways of finding this table of contents resource.
    * We try the given attribute value, some often-used ones and finally look through all resources for the first resource with the table of contents mimetype.
    *
-   * @param spineElement
-   * @param resourcesById
+   * @param tocResourceId
+   * @param resources
    * @return the Resource containing the table of contents
    */
   static Resource findTableOfContentsResource(String tocResourceId,

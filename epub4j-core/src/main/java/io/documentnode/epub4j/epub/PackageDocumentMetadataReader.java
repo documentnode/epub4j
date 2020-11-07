@@ -22,7 +22,6 @@ import org.w3c.dom.NodeList;
  * In its own separate class because the PackageDocumentReader became a bit large and unwieldy.
  *
  * @author paul
- *
  */
 // package
 class PackageDocumentMetadataReader extends PackageDocumentBase {

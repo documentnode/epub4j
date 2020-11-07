@@ -13,7 +13,6 @@ import java.util.List;
  * Cleans up the XHTML.
  *
  * @author paul.siegmann
- *
  */
 public class BookProcessorPipeline implements BookProcessor {
 
@@ -27,7 +26,6 @@ public class BookProcessorPipeline implements BookProcessor {
   public BookProcessorPipeline(List<BookProcessor> bookProcessingPipeline) {
     this.bookProcessors = bookProcessingPipeline;
   }
-
 
   @Override
   public Book processBook(Book book) {

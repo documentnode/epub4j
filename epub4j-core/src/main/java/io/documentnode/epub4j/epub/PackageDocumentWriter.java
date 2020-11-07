@@ -56,7 +56,6 @@ public class PackageDocumentWriter extends PackageDocumentBase {
     }
   }
 
-
   /**
    * Writes the package's spine.
    *
