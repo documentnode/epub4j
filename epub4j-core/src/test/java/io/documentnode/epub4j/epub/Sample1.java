@@ -6,7 +6,7 @@ import io.documentnode.epub4j.domain.Resource;
 import io.documentnode.epub4j.domain.TOCReference;
 import java.io.FileOutputStream;
 
-public class Simple1 {
+public class Sample1 {
 
   public static void main(String[] args) {
     try {
@@ -21,42 +21,42 @@ public class Simple1 {
 
       // Set cover image
       book.setCoverImage(new Resource(
-          Simple1.class.getResourceAsStream("/book1/cover.png"),
+          Sample1.class.getResourceAsStream("/book1/cover.png"),
           "cover.png"));
 
       // Set cover page
       book.setCoverPage(new Resource(
-          Simple1.class.getResourceAsStream("/book1/cover.html"),
+          Sample1.class.getResourceAsStream("/book1/cover.html"),
           "cover.html"));
 
       // Add Chapter 1
       book.addSection("Introduction", new Resource(
-          Simple1.class.getResourceAsStream("/book1/chapter1.html"),
+          Sample1.class.getResourceAsStream("/book1/chapter1.html"),
           "chapter1.html"));
 
       // Add css file
       book.getResources().add(
-          new Resource(Simple1.class.getResourceAsStream("/book1/book1.css"),
+          new Resource(Sample1.class.getResourceAsStream("/book1/book1.css"),
               "book1.css"));
 
       // Add Chapter 2
       TOCReference chapter2 = book.addSection("Second Chapter", new Resource(
-          Simple1.class.getResourceAsStream("/book1/chapter2.html"),
+          Sample1.class.getResourceAsStream("/book1/chapter2.html"),
           "chapter2.html"));
 
       // Add image used by Chapter 2
       book.getResources().add(new Resource(
-          Simple1.class.getResourceAsStream("/book1/flowers_320x240.jpg"),
+          Sample1.class.getResourceAsStream("/book1/flowers_320x240.jpg"),
           "flowers.jpg"));
 
       // Add Chapter2, Section 1
       book.addSection(chapter2, "Chapter 2, section 1", new Resource(
-          Simple1.class.getResourceAsStream("/book1/chapter2_1.html"),
+          Sample1.class.getResourceAsStream("/book1/chapter2_1.html"),
           "chapter2_1.html"));
 
       // Add Chapter 3
       book.addSection("Conclusion", new Resource(
-          Simple1.class.getResourceAsStream("/book1/chapter3.html"),
+          Sample1.class.getResourceAsStream("/book1/chapter3.html"),
           "chapter3.html"));
 
       // Create EpubWriter
