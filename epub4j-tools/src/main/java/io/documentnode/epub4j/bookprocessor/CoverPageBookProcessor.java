@@ -5,7 +5,7 @@ import io.documentnode.epub4j.domain.Metadata;
 import io.documentnode.epub4j.domain.Resource;
 import io.documentnode.epub4j.domain.Resources;
 import io.documentnode.epub4j.epub.BookProcessor;
-import io.documentnode.epub4j.service.MediatypeService;
+import io.documentnode.epub4j.domain.MediaTypes;
 import io.documentnode.epub4j.util.CollectionUtil;
 import io.documentnode.epub4j.util.ResourceUtil;
 import io.documentnode.minilog.Logger;
@@ -64,7 +64,7 @@ public class CoverPageBookProcessor implements BookProcessor {
         String coverPageHtml = createCoverpageHtml(
             CollectionUtil.first(metadata.getTitles()), coverImage.getHref());
         coverPage = new Resource(null, coverPageHtml.getBytes(),
-            getCoverPageHref(book), MediatypeService.XHTML);
+            getCoverPageHref(book), MediaTypes.XHTML);
         fixCoverResourceId(book, coverPage, DEFAULT_COVER_PAGE_ID);
       }
     } else { // coverPage != null

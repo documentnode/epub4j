@@ -1,6 +1,7 @@
 package io.documentnode.epub4j.chm;
 
 import io.documentnode.epub4j.Constants;
+import io.documentnode.epub4j.domain.MediaTypes;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -14,7 +15,6 @@ import io.documentnode.epub4j.domain.Resource;
 import io.documentnode.epub4j.domain.Resources;
 import io.documentnode.epub4j.domain.TOCReference;
 import io.documentnode.epub4j.domain.TableOfContents;
-import io.documentnode.epub4j.service.MediatypeService;
 import io.documentnode.epub4j.util.ResourceUtil;
 
 import org.apache.commons.io.IOUtils;
@@ -112,13 +112,13 @@ public class ChmParser {
 			if (file.getType() == FileType.FOLDER) {
 				continue;
 			}
-			MediaType mediaType = MediatypeService.determineMediaType(file.getName().getBaseName()); 
+			MediaType mediaType = MediaTypes.determineMediaType(file.getName().getBaseName());
 			if(mediaType == null) {
 				continue;
 			}
 			String href = file.getName().toString().substring(rootDir.getName().toString().length() + 1);
 			byte[] resourceData = IOUtils.toByteArray(file.getContent().getInputStream());
-			if(mediaType == MediatypeService.XHTML && ! Constants.CHARACTER_ENCODING.equalsIgnoreCase(inputEncoding)) {
+			if(mediaType == MediaTypes.XHTML && ! Constants.CHARACTER_ENCODING.equalsIgnoreCase(inputEncoding)) {
 				resourceData = ResourceUtil.recode(inputEncoding, Constants.CHARACTER_ENCODING, resourceData);
 			}
 			Resource fileResource = new Resource(null, resourceData, href, mediaType);

@@ -2,7 +2,7 @@ package io.documentnode.epub4j.epub;
 
 import io.documentnode.epub4j.domain.Book;
 import io.documentnode.epub4j.domain.Resource;
-import io.documentnode.epub4j.service.MediatypeService;
+import io.documentnode.epub4j.domain.MediaTypes;
 import io.documentnode.epub4j.util.IOUtil;
 import io.documentnode.minilog.Logger;
 import java.io.IOException;
@@ -145,7 +145,7 @@ public class EpubWriter {
   private void writeMimeType(ZipOutputStream resultStream) throws IOException {
     ZipEntry mimetypeZipEntry = new ZipEntry("mimetype");
     mimetypeZipEntry.setMethod(ZipEntry.STORED);
-    byte[] mimetypeBytes = MediatypeService.EPUB.getName().getBytes();
+    byte[] mimetypeBytes = MediaTypes.EPUB.getName().getBytes();
     mimetypeZipEntry.setSize(mimetypeBytes.length);
     mimetypeZipEntry.setCrc(calculateCrc(mimetypeBytes));
     resultStream.putNextEntry(mimetypeZipEntry);
@@ -167,7 +167,7 @@ public class EpubWriter {
   }
 
   String getNcxMediaType() {
-    return MediatypeService.NCX.getName();
+    return MediaTypes.NCX.getName();
   }
 
   public BookProcessor getBookProcessor() {

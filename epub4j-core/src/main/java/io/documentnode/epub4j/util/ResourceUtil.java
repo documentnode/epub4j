@@ -4,7 +4,7 @@ import io.documentnode.epub4j.Constants;
 import io.documentnode.epub4j.domain.MediaType;
 import io.documentnode.epub4j.domain.Resource;
 import io.documentnode.epub4j.epub.EpubProcessorSupport;
-import io.documentnode.epub4j.service.MediatypeService;
+import io.documentnode.epub4j.domain.MediaTypes;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -30,7 +30,7 @@ public class ResourceUtil {
     if (file == null) {
       return null;
     }
-    MediaType mediaType = MediatypeService.determineMediaType(file.getName());
+    MediaType mediaType = MediaTypes.determineMediaType(file.getName());
     byte[] data = IOUtil.toByteArray(new FileInputStream(file));
     Resource result = new Resource(data, mediaType);
     return result;
@@ -48,7 +48,7 @@ public class ResourceUtil {
     String content =
         "<html><head><title>" + title + "</title></head><body><h1>" + title
             + "</h1></body></html>";
-    return new Resource(null, content.getBytes(), href, MediatypeService.XHTML,
+    return new Resource(null, content.getBytes(), href, MediaTypes.XHTML,
         Constants.CHARACTER_ENCODING);
   }
 

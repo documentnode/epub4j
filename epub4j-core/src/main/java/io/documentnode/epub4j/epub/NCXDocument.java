@@ -7,7 +7,7 @@ import io.documentnode.epub4j.domain.Identifier;
 import io.documentnode.epub4j.domain.Resource;
 import io.documentnode.epub4j.domain.TOCReference;
 import io.documentnode.epub4j.domain.TableOfContents;
-import io.documentnode.epub4j.service.MediatypeService;
+import io.documentnode.epub4j.domain.MediaTypes;
 import io.documentnode.epub4j.util.ResourceUtil;
 import io.documentnode.epub4j.util.StringUtil;
 import io.documentnode.minilog.Logger;
@@ -209,7 +209,7 @@ public class NCXDocument {
     XmlSerializer out = EpubProcessorSupport.createXmlSerializer(data);
     write(out, identifiers, title, authors, tableOfContents);
     Resource resource = new Resource(NCX_ITEM_ID, data.toByteArray(),
-        DEFAULT_NCX_HREF, MediatypeService.NCX);
+        DEFAULT_NCX_HREF, MediaTypes.NCX);
     return resource;
   }
 

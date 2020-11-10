@@ -1,6 +1,5 @@
 package io.documentnode.epub4j.domain;
 
-import io.documentnode.epub4j.service.MediatypeService;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Collection;
@@ -12,7 +11,7 @@ import java.util.Collection;
  *
  * All allowed mediaTypes are maintained bye the MediaTypeService.
  *
- * @see MediatypeService
+ * @see MediaTypes
  *
  * @author paul
  */

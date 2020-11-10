@@ -3,7 +3,7 @@ package io.documentnode.epub4j.epub;
 import io.documentnode.epub4j.domain.LazyResource;
 import io.documentnode.epub4j.domain.Resource;
 import io.documentnode.epub4j.domain.Resources;
-import io.documentnode.epub4j.service.MediatypeService;
+import io.documentnode.epub4j.domain.MediaTypes;
 import io.documentnode.epub4j.util.IOUtil;
 import java.io.File;
 import java.io.FileInputStream;
@@ -117,7 +117,7 @@ public class ResourcesLoaderTest {
 
     // when
     Resources resources = ResourcesLoader.loadResources(zipFile, encoding,
-        Arrays.asList(MediatypeService.mediatypes));
+        Arrays.asList(MediaTypes.mediaTypes));
 
     // then
     verifyResources(resources);
@@ -137,7 +137,7 @@ public class ResourcesLoaderTest {
 
     // when
     Resources resources = ResourcesLoader.loadResources(zipFile, encoding,
-        Collections.singletonList(MediatypeService.CSS));
+        Collections.singletonList(MediaTypes.CSS));
 
     // then
     verifyResources(resources);
@@ -169,7 +169,7 @@ public class ResourcesLoaderTest {
     resource = resources.getByHref(allHrefs.get(1));
     Assert.assertEquals("book1", resource.getId());
     Assert.assertEquals("OEBPS/book1.css", resource.getHref());
-    Assert.assertEquals(MediatypeService.CSS, resource.getMediaType());
+    Assert.assertEquals(MediaTypes.CSS, resource.getMediaType());
     Assert.assertEquals(74, resource.getData().length);
     expectedData = IOUtil
         .toByteArray(this.getClass().getResourceAsStream("/book1/book1.css"));
@@ -179,7 +179,7 @@ public class ResourcesLoaderTest {
     resource = resources.getByHref(allHrefs.get(2));
     Assert.assertEquals("chapter1", resource.getId());
     Assert.assertEquals("OEBPS/chapter1.html", resource.getHref());
-    Assert.assertEquals(MediatypeService.XHTML, resource.getMediaType());
+    Assert.assertEquals(MediaTypes.XHTML, resource.getMediaType());
     Assert.assertEquals(283, resource.getData().length);
     expectedData = IOUtil.toByteArray(
         this.getClass().getResourceAsStream("/book1/chapter1.html"));

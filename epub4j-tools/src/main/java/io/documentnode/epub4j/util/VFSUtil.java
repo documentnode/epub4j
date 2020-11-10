@@ -2,7 +2,7 @@ package io.documentnode.epub4j.util;
 
 import io.documentnode.epub4j.domain.MediaType;
 import io.documentnode.epub4j.domain.Resource;
-import io.documentnode.epub4j.service.MediatypeService;
+import io.documentnode.epub4j.domain.MediaTypes;
 import io.documentnode.minilog.Logger;
 import java.io.File;
 import java.io.FileInputStream;
@@ -26,7 +26,7 @@ public class VFSUtil {
 
   public static Resource createResource(FileObject rootDir, FileObject file,
       String inputEncoding) throws IOException {
-    MediaType mediaType = MediatypeService
+    MediaType mediaType = MediaTypes
         .determineMediaType(file.getName().getBaseName());
     if (mediaType == null) {
       return null;

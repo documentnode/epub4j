@@ -1,4 +1,4 @@
-package io.documentnode.epub4j.service;
+package io.documentnode.epub4j.domain;
 
 import io.documentnode.epub4j.domain.MediaType;
 import io.documentnode.epub4j.util.StringUtil;
@@ -11,7 +11,7 @@ import java.util.Map;
  *
  * @author paul
  */
-public class MediatypeService {
+public class MediaTypes {
 
   public static final MediaType XHTML = new MediaType("application/xhtml+xml",
       ".xhtml", new String[]{".htm", ".html", ".xhtml"});
@@ -54,7 +54,7 @@ public class MediatypeService {
   public static final MediaType PLS = new MediaType("application/pls+xml",
       ".pls");
 
-  public static MediaType[] mediatypes = new MediaType[]{
+  public static MediaType[] mediaTypes = new MediaType[]{
       XHTML, EPUB, JPG, PNG, GIF, CSS, SVG, TTF, NCX, XPGT, OPENTYPE, WOFF,
       SMIL, PLS, JAVASCRIPT, MP3, MP4, OGG
   };
@@ -62,8 +62,8 @@ public class MediatypeService {
   public static Map<String, MediaType> mediaTypesByName = new HashMap<String, MediaType>();
 
   static {
-    for (int i = 0; i < mediatypes.length; i++) {
-      mediaTypesByName.put(mediatypes[i].getName(), mediatypes[i]);
+    for (int i = 0; i < mediaTypes.length; i++) {
+      mediaTypesByName.put(mediaTypes[i].getName(), mediaTypes[i]);
     }
   }
 

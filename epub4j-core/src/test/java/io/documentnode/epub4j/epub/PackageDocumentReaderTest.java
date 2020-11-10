@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import io.documentnode.epub4j.domain.MediaTypes;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
@@ -16,7 +17,6 @@ import org.xml.sax.SAXException;
 
 import io.documentnode.epub4j.domain.Resource;
 import io.documentnode.epub4j.domain.Resources;
-import io.documentnode.epub4j.service.MediatypeService;
 
 public class PackageDocumentReaderTest {
 	
@@ -53,7 +53,7 @@ public class PackageDocumentReaderTest {
 		Resources resources = mock(Resources.class);
 		Resource resource = mock(Resource.class);
 		when(resources.getByIdOrHref(tocResourceId)).thenReturn(null);
-		when(resources.findFirstResourceByMediaType(MediatypeService.NCX)).thenReturn(resource);
+		when(resources.findFirstResourceByMediaType(MediaTypes.NCX)).thenReturn(resource);
 
 		// when
 		Resource actualResult = PackageDocumentReader.findTableOfContentsResource("foo", resources);
@@ -61,7 +61,7 @@ public class PackageDocumentReaderTest {
 		// then
 		Assert.assertEquals(resource, actualResult);
 		Mockito.verify(resources).getByIdOrHref(tocResourceId);
-		Mockito.verify(resources).findFirstResourceByMediaType(MediatypeService.NCX);
+		Mockito.verify(resources).findFirstResourceByMediaType(MediaTypes.NCX);
 		Mockito.verifyNoMoreInteractions(resources);
 	}
 
@@ -72,7 +72,7 @@ public class PackageDocumentReaderTest {
 		Resources resources = mock(Resources.class);
 		Resource resource = mock(Resource.class);
 		when(resources.getByIdOrHref(tocResourceId)).thenReturn(null);
-		when(resources.findFirstResourceByMediaType(MediatypeService.NCX)).thenReturn(null);
+		when(resources.findFirstResourceByMediaType(MediaTypes.NCX)).thenReturn(null);
 		when(resources.getByIdOrHref("NCX")).thenReturn(resource);
 
 		// when
@@ -85,7 +85,7 @@ public class PackageDocumentReaderTest {
 		Mockito.verify(resources).getByIdOrHref("TOC");
 		Mockito.verify(resources).getByIdOrHref("ncx");
 		Mockito.verify(resources).getByIdOrHref("NCX");
-		Mockito.verify(resources).findFirstResourceByMediaType(MediatypeService.NCX);
+		Mockito.verify(resources).findFirstResourceByMediaType(MediaTypes.NCX);
 		Mockito.verifyNoMoreInteractions(resources);
 	}
 
@@ -96,7 +96,7 @@ public class PackageDocumentReaderTest {
 		Resources resources = mock(Resources.class);
 		Resource resource = mock(Resource.class);
 		when(resources.getByIdOrHref(Mockito.anyString())).thenReturn(null);
-		when(resources.findFirstResourceByMediaType(MediatypeService.NCX)).thenReturn(null);
+		when(resources.findFirstResourceByMediaType(MediaTypes.NCX)).thenReturn(null);
 
 		// when
 		Resource actualResult = PackageDocumentReader.findTableOfContentsResource("foo", resources);
@@ -110,7 +110,7 @@ public class PackageDocumentReaderTest {
 		Mockito.verify(resources).getByIdOrHref("NCX");
 		Mockito.verify(resources).getByIdOrHref("ncxtoc");
 		Mockito.verify(resources).getByIdOrHref("NCXTOC");
-		Mockito.verify(resources).findFirstResourceByMediaType(MediatypeService.NCX);
+		Mockito.verify(resources).findFirstResourceByMediaType(MediaTypes.NCX);
 		Mockito.verifyNoMoreInteractions(resources);
 	}
 

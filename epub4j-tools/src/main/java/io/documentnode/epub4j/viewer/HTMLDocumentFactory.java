@@ -5,7 +5,7 @@ import io.documentnode.epub4j.browsersupport.NavigationEventListener;
 import io.documentnode.epub4j.browsersupport.Navigator;
 import io.documentnode.epub4j.domain.Book;
 import io.documentnode.epub4j.domain.Resource;
-import io.documentnode.epub4j.service.MediatypeService;
+import io.documentnode.epub4j.domain.MediaTypes;
 import io.documentnode.minilog.Logger;
 import java.io.Reader;
 import java.io.StringReader;
@@ -149,7 +149,7 @@ public class HTMLDocumentFactory implements NavigationEventListener {
    */
   private HTMLDocument createDocument(Resource resource) {
     HTMLDocument result = null;
-    if (resource.getMediaType() != MediatypeService.XHTML) {
+    if (resource.getMediaType() != MediaTypes.XHTML) {
       return result;
     }
     try {

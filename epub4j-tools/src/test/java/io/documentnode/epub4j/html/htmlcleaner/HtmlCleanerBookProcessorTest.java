@@ -1,13 +1,13 @@
 package io.documentnode.epub4j.html.htmlcleaner;
 
 import io.documentnode.epub4j.Constants;
+import io.documentnode.epub4j.domain.MediaTypes;
 import java.io.IOException;
 
 import junit.framework.TestCase;
 import io.documentnode.epub4j.bookprocessor.HtmlCleanerBookProcessor;
 import io.documentnode.epub4j.domain.Book;
 import io.documentnode.epub4j.domain.Resource;
-import io.documentnode.epub4j.service.MediatypeService;
 
 public class HtmlCleanerBookProcessorTest extends TestCase {
 
@@ -46,7 +46,7 @@ public class HtmlCleanerBookProcessorTest extends TestCase {
 		Book book = new Book();
 		String testInput = "<html xmlns=\"http://www.w3.org/1999/xhtml\"><head><title>test page</title></head><body>Hello, world! ß</body></html>";
 		try {
-			Resource resource = new Resource(null, testInput.getBytes(Constants.CHARACTER_ENCODING), "test.html", MediatypeService.XHTML, Constants.CHARACTER_ENCODING);
+			Resource resource = new Resource(null, testInput.getBytes(Constants.CHARACTER_ENCODING), "test.html", MediaTypes.XHTML, Constants.CHARACTER_ENCODING);
 			book.getResources().add(resource);
 			HtmlCleanerBookProcessor htmlCleanerBookProcessor = new HtmlCleanerBookProcessor();
 			byte[] processedHtml = htmlCleanerBookProcessor.processHtml(resource, book, Constants.CHARACTER_ENCODING);
@@ -141,7 +141,7 @@ public class HtmlCleanerBookProcessorTest extends TestCase {
 		Book book = new Book();
 		String testInput = "<html xmlns=\"http://www.w3.org/1999/xhtml\"><head><title>test page</title></head><body>'hi'</body></html>";
 		try {
-			Resource resource = new Resource(null, testInput.getBytes(Constants.CHARACTER_ENCODING), "test.html", MediatypeService.XHTML, Constants.CHARACTER_ENCODING);
+			Resource resource = new Resource(null, testInput.getBytes(Constants.CHARACTER_ENCODING), "test.html", MediaTypes.XHTML, Constants.CHARACTER_ENCODING);
 			book.getResources().add(resource);
 			HtmlCleanerBookProcessor htmlCleanerBookProcessor = new HtmlCleanerBookProcessor();
 			byte[] processedHtml = htmlCleanerBookProcessor.processHtml(resource, book, Constants.CHARACTER_ENCODING);

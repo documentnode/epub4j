@@ -1,7 +1,7 @@
 package io.documentnode.epub4j.util;
 
 import io.documentnode.epub4j.domain.Resource;
-import io.documentnode.epub4j.service.MediatypeService;
+import io.documentnode.epub4j.domain.MediaTypes;
 import io.documentnode.minilog.Logger;
 import java.io.IOException;
 import java.io.Reader;
@@ -24,7 +24,7 @@ public class ToolsResourceUtil {
     if (resource == null) {
       return "";
     }
-    if (resource.getMediaType() != MediatypeService.XHTML) {
+    if (resource.getMediaType() != MediaTypes.XHTML) {
       return resource.getHref();
     }
     String title = findTitleFromXhtml(resource);

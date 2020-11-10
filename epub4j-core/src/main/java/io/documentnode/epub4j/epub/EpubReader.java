@@ -5,7 +5,7 @@ import io.documentnode.epub4j.domain.Book;
 import io.documentnode.epub4j.domain.MediaType;
 import io.documentnode.epub4j.domain.Resource;
 import io.documentnode.epub4j.domain.Resources;
-import io.documentnode.epub4j.service.MediatypeService;
+import io.documentnode.epub4j.domain.MediaTypes;
 import io.documentnode.epub4j.util.ResourceUtil;
 import io.documentnode.epub4j.util.StringUtil;
 import io.documentnode.minilog.Logger;
@@ -66,7 +66,7 @@ public class EpubReader {
   public Book readEpubLazy(ZipFile zipFile, String encoding)
       throws IOException {
     return readEpubLazy(zipFile, encoding,
-        Arrays.asList(MediatypeService.mediatypes));
+        Arrays.asList(MediaTypes.mediaTypes));
   }
 
   public Book readEpub(ZipInputStream in, String encoding) throws IOException {

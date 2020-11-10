@@ -5,7 +5,7 @@ import io.documentnode.epub4j.Constants;
 import io.documentnode.epub4j.domain.Book;
 import io.documentnode.epub4j.domain.Resource;
 import io.documentnode.epub4j.epub.BookProcessor;
-import io.documentnode.epub4j.service.MediatypeService;
+import io.documentnode.epub4j.domain.MediaTypes;
 import io.documentnode.minilog.Logger;
 import java.io.IOException;
 
@@ -36,7 +36,7 @@ public abstract class HtmlBookProcessor implements BookProcessor {
 
   private void cleanupResource(Resource resource, Book book)
       throws IOException {
-    if (resource.getMediaType() == MediatypeService.XHTML) {
+    if (resource.getMediaType() == MediaTypes.XHTML) {
       byte[] cleanedHtml = processHtml(resource, book,
           Constants.CHARACTER_ENCODING);
       resource.setData(cleanedHtml);

@@ -2,6 +2,7 @@ package io.documentnode.epub4j.fileset;
 
 
 import io.documentnode.epub4j.Constants;
+import io.documentnode.epub4j.domain.MediaTypes;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,7 +18,6 @@ import io.documentnode.epub4j.domain.Spine;
 import io.documentnode.epub4j.domain.TOCReference;
 import io.documentnode.epub4j.domain.TableOfContents;
 import io.documentnode.epub4j.epub.BookProcessor;
-import io.documentnode.epub4j.service.MediatypeService;
 import io.documentnode.epub4j.util.ResourceUtil;
 import io.documentnode.epub4j.util.VFSUtil;
 
@@ -86,7 +86,7 @@ public class FilesetBookCreator {
 			FileObject file = files[i];
 			if(file.getType() == FileType.FOLDER) {
 				processSubdirectory(rootDir, file, sections, resources, inputEncoding);
-			} else if (MediatypeService.determineMediaType(file.getName().getBaseName()) == null) {
+			} else if (MediaTypes.determineMediaType(file.getName().getBaseName()) == null) {
 				continue;
 			} else {
 				Resource resource = VFSUtil.createResource(rootDir, file, inputEncoding);
@@ -94,7 +94,7 @@ public class FilesetBookCreator {
 					continue;
 				}
 				resources.add(resource);
-				if(MediatypeService.XHTML == resource.getMediaType()) {
+				if(MediaTypes.XHTML == resource.getMediaType()) {
 					TOCReference section = new TOCReference(file.getName().getBaseName(), resource);
 					sections.add(section);
 				}

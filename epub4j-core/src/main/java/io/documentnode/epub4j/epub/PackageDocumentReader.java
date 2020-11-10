@@ -9,7 +9,7 @@ import io.documentnode.epub4j.domain.Resource;
 import io.documentnode.epub4j.domain.Resources;
 import io.documentnode.epub4j.domain.Spine;
 import io.documentnode.epub4j.domain.SpineReference;
-import io.documentnode.epub4j.service.MediatypeService;
+import io.documentnode.epub4j.domain.MediaTypes;
 import io.documentnode.epub4j.util.ResourceUtil;
 import io.documentnode.epub4j.util.StringUtil;
 import io.documentnode.minilog.Logger;
@@ -123,7 +123,7 @@ public class PackageDocumentReader extends PackageDocumentBase {
         continue;
       }
       resource.setId(id);
-      MediaType mediaType = MediatypeService.getMediaTypeByName(mediaTypeName);
+      MediaType mediaType = MediaTypes.getMediaTypeByName(mediaTypeName);
       if (mediaType != null) {
         resource.setMediaType(mediaType);
       }
@@ -286,9 +286,9 @@ public class PackageDocumentReader extends PackageDocumentBase {
     Collections.sort(resourceHrefs, String.CASE_INSENSITIVE_ORDER);
     for (String resourceHref : resourceHrefs) {
       Resource resource = resources.getByHref(resourceHref);
-      if (resource.getMediaType() == MediatypeService.NCX) {
+      if (resource.getMediaType() == MediaTypes.NCX) {
         result.setTocResource(resource);
-      } else if (resource.getMediaType() == MediatypeService.XHTML) {
+      } else if (resource.getMediaType() == MediaTypes.XHTML) {
         result.addSpineReference(new SpineReference(resource));
       }
     }
@@ -318,7 +318,7 @@ public class PackageDocumentReader extends PackageDocumentBase {
     }
 
     // get the first resource with the NCX mediatype
-    tocResource = resources.findFirstResourceByMediaType(MediatypeService.NCX);
+    tocResource = resources.findFirstResourceByMediaType(MediaTypes.NCX);
 
     if (tocResource == null) {
       for (int i = 0; i < POSSIBLE_NCX_ITEM_IDS.length; i++) {
@@ -402,9 +402,9 @@ public class PackageDocumentReader extends PackageDocumentBase {
         log.error("Cover resource " + coverHref + " not found");
         continue;
       }
-      if (resource.getMediaType() == MediatypeService.XHTML) {
+      if (resource.getMediaType() == MediaTypes.XHTML) {
         book.setCoverPage(resource);
-      } else if (MediatypeService.isBitmapImage(resource.getMediaType())) {
+      } else if (MediaTypes.isBitmapImage(resource.getMediaType())) {
         book.setCoverImage(resource);
       }
     }

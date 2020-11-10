@@ -7,7 +7,7 @@ import java.util.List;
 import junit.framework.TestCase;
 import io.documentnode.epub4j.domain.Book;
 import io.documentnode.epub4j.domain.Resource;
-import io.documentnode.epub4j.service.MediatypeService;
+import io.documentnode.epub4j.domain.MediaTypes;
 
 public class SearchIndexTest extends TestCase {
 
@@ -64,7 +64,7 @@ public class SearchIndexTest extends TestCase {
 				"title", "<html><title>my title1</title><body><h1>wrong title</h1></body></html>", new Integer[] {3, 15}
 		};
 		for (int i = 0; i < testData.length; i+= 3) {
-			Resource resource = new Resource(((String) testData[i + 1]).getBytes(), MediatypeService.XHTML);
+			Resource resource = new Resource(((String) testData[i + 1]).getBytes(), MediaTypes.XHTML);
 			String content = SearchIndex.getSearchContent(new StringReader((String) testData[i + 1]));
 			String searchTerm = (String) testData[i];
 			Integer[] expectedResult = (Integer[]) testData[i + 2];

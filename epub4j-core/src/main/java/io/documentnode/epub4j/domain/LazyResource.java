@@ -1,6 +1,5 @@
 package io.documentnode.epub4j.domain;
 
-import io.documentnode.epub4j.service.MediatypeService;
 import io.documentnode.epub4j.util.IOUtil;
 import io.documentnode.minilog.Logger;
 import java.io.ByteArrayInputStream;
@@ -34,7 +33,7 @@ public class LazyResource extends Resource {
    * @param href The resource's href within the epub.
    */
   public LazyResource(String filename, long size, String href) {
-    super(null, null, href, MediatypeService.determineMediaType(href));
+    super(null, null, href, MediaTypes.determineMediaType(href));
     this.filename = filename;
     this.cachedSize = size;
   }
@@ -57,7 +56,7 @@ public class LazyResource extends Resource {
   public LazyResource(InputStream in, String filename, int length, String href)
       throws IOException {
     super(null, IOUtil.toByteArray(in, length), href,
-        MediatypeService.determineMediaType(href));
+        MediaTypes.determineMediaType(href));
     this.filename = filename;
     this.cachedSize = length;
   }

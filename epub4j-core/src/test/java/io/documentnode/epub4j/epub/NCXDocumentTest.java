@@ -2,13 +2,13 @@ package io.documentnode.epub4j.epub;
 
 import static org.junit.Assert.assertEquals;
 
+import io.documentnode.epub4j.domain.MediaTypes;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
 import io.documentnode.epub4j.domain.Book;
 import io.documentnode.epub4j.domain.Resource;
-import io.documentnode.epub4j.service.MediatypeService;
 import io.documentnode.epub4j.util.IOUtil;
 
 import org.junit.After;
@@ -42,7 +42,7 @@ public class NCXDocumentTest {
     }
 
     private void addResource(Book book, String filename) {
-        Resource chapterResource = new Resource("id1", "Hello, world !".getBytes(), filename, MediatypeService.XHTML);
+        Resource chapterResource = new Resource("id1", "Hello, world !".getBytes(), filename, MediaTypes.XHTML);
         book.addResource(chapterResource);
         book.getSpine().addResource(chapterResource);
     }

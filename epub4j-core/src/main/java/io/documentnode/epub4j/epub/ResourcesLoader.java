@@ -4,7 +4,7 @@ import io.documentnode.epub4j.domain.LazyResource;
 import io.documentnode.epub4j.domain.MediaType;
 import io.documentnode.epub4j.domain.Resource;
 import io.documentnode.epub4j.domain.Resources;
-import io.documentnode.epub4j.service.MediatypeService;
+import io.documentnode.epub4j.domain.MediaTypes;
 import io.documentnode.epub4j.util.CollectionUtil;
 import io.documentnode.epub4j.util.ResourceUtil;
 import io.documentnode.minilog.Logger;
@@ -67,7 +67,7 @@ public class ResourcesLoader {
             .createResource(zipEntry, zipFile.getInputStream(zipEntry));
       }
 
-      if (resource.getMediaType() == MediatypeService.XHTML) {
+      if (resource.getMediaType() == MediaTypes.XHTML) {
         resource.setInputEncoding(defaultHtmlEncoding);
       }
       result.add(resource);
@@ -90,7 +90,7 @@ public class ResourcesLoader {
     if (CollectionUtil.isEmpty(lazilyLoadedMediaTypes)) {
       return false;
     }
-    MediaType mediaType = MediatypeService.determineMediaType(href);
+    MediaType mediaType = MediaTypes.determineMediaType(href);
     return lazilyLoadedMediaTypes.contains(mediaType);
   }
 
@@ -119,7 +119,7 @@ public class ResourcesLoader {
 
       // store resource
       Resource resource = ResourceUtil.createResource(zipEntry, zipInputStream);
-      if (resource.getMediaType() == MediatypeService.XHTML) {
+      if (resource.getMediaType() == MediaTypes.XHTML) {
         resource.setInputEncoding(defaultHtmlEncoding);
       }
       result.add(resource);

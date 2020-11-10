@@ -1,7 +1,6 @@
 package io.documentnode.epub4j.domain;
 
 import io.documentnode.epub4j.Constants;
-import io.documentnode.epub4j.service.MediatypeService;
 import io.documentnode.epub4j.util.StringUtil;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -81,7 +80,7 @@ public class Resources implements Serializable {
 
   private String getResourceItemPrefix(Resource resource) {
     String result;
-    if (MediatypeService.isBitmapImage(resource.getMediaType())) {
+    if (MediaTypes.isBitmapImage(resource.getMediaType())) {
       result = IMAGE_PREFIX;
     } else {
       result = ITEM_PREFIX;
@@ -181,7 +180,7 @@ public class Resources implements Serializable {
   }
 
   private String createHref(MediaType mediaType, int counter) {
-    if (MediatypeService.isBitmapImage(mediaType)) {
+    if (MediaTypes.isBitmapImage(mediaType)) {
       return "image_" + counter + mediaType.getDefaultExtension();
     } else {
       return "item_" + counter + mediaType.getDefaultExtension();

@@ -1,8 +1,8 @@
 package io.documentnode.epub4j.utilities;
 
+import io.documentnode.epub4j.domain.MediaTypes;
 import junit.framework.TestCase;
 import io.documentnode.epub4j.domain.Resource;
-import io.documentnode.epub4j.service.MediatypeService;
 import io.documentnode.epub4j.util.ToolsResourceUtil;
 
 public class ResourceUtilTest extends TestCase {
@@ -17,7 +17,7 @@ public class ResourceUtilTest extends TestCase {
 				"<html><body><XH1 class=\"main\">wrong title</Xh1><h2>test title 6</h2></body></html>", "test title 6",
 		};
 		for (int i = 0; i < testData.length; i+= 2) {
-			Resource resource = new Resource(testData[i].getBytes(), MediatypeService.XHTML);
+			Resource resource = new Resource(testData[i].getBytes(), MediaTypes.XHTML);
 			String actualTitle = ToolsResourceUtil.findTitleFromXhtml(resource);
 			assertEquals(testData[i + 1], actualTitle);
 		}

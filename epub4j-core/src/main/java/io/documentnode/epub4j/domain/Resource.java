@@ -1,7 +1,6 @@
 package io.documentnode.epub4j.domain;
 
 import io.documentnode.epub4j.Constants;
-import io.documentnode.epub4j.service.MediatypeService;
 import io.documentnode.epub4j.util.IOUtil;
 import io.documentnode.epub4j.util.StringUtil;
 import io.documentnode.epub4j.util.commons.io.XmlStreamReader;
@@ -37,7 +36,7 @@ public class Resource implements Serializable {
    * @param href The location of the resource within the epub. Example: "chapter1.html".
    */
   public Resource(String href) {
-    this(null, new byte[0], href, MediatypeService.determineMediaType(href));
+    this(null, new byte[0], href, MediaTypes.determineMediaType(href));
   }
 
   /**
@@ -59,13 +58,13 @@ public class Resource implements Serializable {
    *
    * Assumes that if the data is of a text type (html/css/etc) then the encoding will be UTF-8
    *
-   * @see MediatypeService#determineMediaType(String)
+   * @see MediaTypes#determineMediaType(String)
    *
    * @param data The Resource's contents
    * @param href The location of the resource within the epub. Example: "chapter1.html".
    */
   public Resource(byte[] data, String href) {
-    this(null, data, href, MediatypeService.determineMediaType(href),
+    this(null, data, href, MediaTypes.determineMediaType(href),
         Constants.CHARACTER_ENCODING);
   }
 
@@ -73,14 +72,14 @@ public class Resource implements Serializable {
    * Creates a resource with the data from the given Reader at the specified href.
    * The MediaType will be determined based on the href extension.
    *
-   * @see MediatypeService#determineMediaType(String)
+   * @see MediaTypes#determineMediaType(String)
    *
    * @param in The Resource's contents
    * @param href The location of the resource within the epub. Example: "cover.jpg".
    */
   public Resource(Reader in, String href) throws IOException {
     this(null, IOUtil.toByteArray(in, Constants.CHARACTER_ENCODING), href,
-        MediatypeService.determineMediaType(href),
+        MediaTypes.determineMediaType(href),
         Constants.CHARACTER_ENCODING);
   }
 
@@ -88,7 +87,7 @@ public class Resource implements Serializable {
    * Creates a resource with the data from the given InputStream at the specified href.
    * The MediaType will be determined based on the href extension.
    *
-   * @see MediatypeService#determineMediaType(String)
+   * @see MediaTypes#determineMediaType(String)
    *
    * Assumes that if the data is of a text type (html/css/etc) then the encoding will be UTF-8
    *
@@ -102,7 +101,7 @@ public class Resource implements Serializable {
    */
   public Resource(InputStream in, String href) throws IOException {
     this(null, IOUtil.toByteArray(in), href,
-        MediatypeService.determineMediaType(href));
+        MediaTypes.determineMediaType(href));
   }
 
   /**

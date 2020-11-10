@@ -122,7 +122,7 @@ public class EpubWriterTest {
 //	        book.getMetadata().addType("TEXT");
 //	        book.getMetadata().setLanguage(dto.getLanguage());
 //	        book.getMetadata().setCoverImage(coverImg);
-//	        book.getMetadata().setFormat(MediatypeService.EPUB.getName());
+//	        book.getMetadata().setFormat(MediaTypes.EPUB.getName());
 //	       
 //	        for(BookSubCategoryDTO subject : dto.getSubjects()){
 //	            book.getMetadata().getSubjects().add(subject.getName());   

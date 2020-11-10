@@ -7,7 +7,7 @@ import io.documentnode.epub4j.domain.GuideReference;
 import io.documentnode.epub4j.domain.Resource;
 import io.documentnode.epub4j.domain.Spine;
 import io.documentnode.epub4j.domain.SpineReference;
-import io.documentnode.epub4j.service.MediatypeService;
+import io.documentnode.epub4j.domain.MediaTypes;
 import io.documentnode.epub4j.util.StringUtil;
 import io.documentnode.minilog.Logger;
 import java.io.IOException;
@@ -142,7 +142,7 @@ public class PackageDocumentWriter extends PackageDocumentBase {
       XmlSerializer serializer)
       throws IllegalArgumentException, IllegalStateException, IOException {
     if (resource == null ||
-        (resource.getMediaType() == MediatypeService.NCX
+        (resource.getMediaType() == MediaTypes.NCX
             && book.getSpine().getTocResource() != null)) {
       return;
     }

@@ -11,7 +11,7 @@ import org.junit.Test;
 
 import io.documentnode.epub4j.domain.Book;
 import io.documentnode.epub4j.domain.Resource;
-import io.documentnode.epub4j.service.MediatypeService;
+import io.documentnode.epub4j.domain.MediaTypes;
 
 public class EpubReaderTest {
 
@@ -70,7 +70,7 @@ public class EpubReaderTest {
 		assertEquals(1, readBook.getTableOfContents().size());
 		assertNotNull(readBook.getOpfResource());
 		assertNotNull(readBook.getNcxResource());
-		assertEquals(MediatypeService.NCX, readBook.getNcxResource()
+		assertEquals(MediaTypes.NCX, readBook.getNcxResource()
 				.getMediaType());
 	}
 }

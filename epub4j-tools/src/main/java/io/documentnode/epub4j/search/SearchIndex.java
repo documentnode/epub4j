@@ -2,7 +2,7 @@ package io.documentnode.epub4j.search;
 
 import io.documentnode.epub4j.domain.Book;
 import io.documentnode.epub4j.domain.Resource;
-import io.documentnode.epub4j.service.MediatypeService;
+import io.documentnode.epub4j.domain.MediaTypes;
 import io.documentnode.minilog.Logger;
 import java.io.IOException;
 import java.io.Reader;
@@ -113,7 +113,7 @@ public class SearchIndex {
 
 
   public static String getSearchContent(Resource resource) {
-    if (resource.getMediaType() != MediatypeService.XHTML) {
+    if (resource.getMediaType() != MediaTypes.XHTML) {
       return "";
     }
     String result = "";

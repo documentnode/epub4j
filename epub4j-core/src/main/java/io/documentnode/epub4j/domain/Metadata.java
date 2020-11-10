@@ -1,6 +1,5 @@
 package io.documentnode.epub4j.domain;
 
-import io.documentnode.epub4j.service.MediatypeService;
 import io.documentnode.epub4j.util.StringUtil;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -32,7 +31,7 @@ public class Metadata implements Serializable {
   private List<String> titles = new ArrayList<String>();
   private List<Identifier> identifiers = new ArrayList<Identifier>();
   private List<String> subjects = new ArrayList<String>();
-  private String format = MediatypeService.EPUB.getName();
+  private String format = MediaTypes.EPUB.getName();
   private List<String> types = new ArrayList<String>();
   private List<String> descriptions = new ArrayList<String>();
   private List<String> publishers = new ArrayList<String>();
