@@ -4,10 +4,10 @@ import io.documentnode.epub4j.Constants;
 import io.documentnode.epub4j.domain.Author;
 import io.documentnode.epub4j.domain.Book;
 import io.documentnode.epub4j.domain.Identifier;
+import io.documentnode.epub4j.domain.MediaTypes;
 import io.documentnode.epub4j.domain.Resource;
 import io.documentnode.epub4j.domain.TOCReference;
 import io.documentnode.epub4j.domain.TableOfContents;
-import io.documentnode.epub4j.domain.MediaTypes;
 import io.documentnode.epub4j.util.ResourceUtil;
 import io.documentnode.epub4j.util.StringUtil;
 import io.documentnode.minilog.Logger;
@@ -100,9 +100,9 @@ public class NCXDocument {
   private static List<TOCReference> readTOCReferences(NodeList navpoints,
       Book book) {
     if (navpoints == null) {
-      return new ArrayList<TOCReference>();
+      return new ArrayList<>();
     }
-    List<TOCReference> result = new ArrayList<TOCReference>(
+    List<TOCReference> result = new ArrayList<>(
         navpoints.getLength());
     for (int i = 0; i < navpoints.getLength(); i++) {
       Node node = navpoints.item(i);

@@ -180,7 +180,7 @@ public class ResourcesLoaderTest {
     Assert.assertEquals("chapter1", resource.getId());
     Assert.assertEquals("OEBPS/chapter1.html", resource.getHref());
     Assert.assertEquals(MediaTypes.XHTML, resource.getMediaType());
-    Assert.assertEquals(283, resource.getData().length);
+    Assert.assertEquals(5100, resource.getData().length);
     expectedData = IOUtil.toByteArray(
         this.getClass().getResourceAsStream("/book1/chapter1.html"));
     Assert.assertArrayEquals(expectedData, resource.getData());
