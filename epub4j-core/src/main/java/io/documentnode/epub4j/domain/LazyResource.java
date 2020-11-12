@@ -19,12 +19,22 @@ public class LazyResource extends Resource {
   private final long cachedSize;
 
   /**
+   * Creates a lazy resource, when the size is unknown.
+   *
+   * @param resourceProvider The resource provider loads data on demand.
+   * @param href The resource's href within the epub.
+   */
+  public LazyResource(LazyResourceProvider resourceProvider, String href) {
+    this(resourceProvider, -1, href);
+  }
+
+  /**
    * Creates a Lazy resource, by not actually loading the data for this entry.
    *
    * The data will be loaded on the first call to getData()
    *
-   * @param resourceProvider
-   * @param size the size of this resource.
+   * @param resourceProvider The resource provider loads data on demand.
+   * @param size The size of this resource.
    * @param href The resource's href within the epub.
    */
   public LazyResource(

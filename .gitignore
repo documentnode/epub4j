@@ -34,3 +34,5 @@ build
 !**/gradle-wapper.jar
 /testbook1.epub
 /epub4j-core/src/main/java/io/documentnode/epub4j/util/GVersion.java
+/testbook1_lazy.epub
+/epub4j-core/testbook1.epub
