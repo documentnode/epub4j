@@ -3,62 +3,35 @@ package io.documentnode.epub4j.domain;
 import io.documentnode.epub4j.util.IOUtil;
 import io.documentnode.minilog.Logger;
 import java.io.ByteArrayInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
 
 /**
- * A Resource that loads its data only on-demand.
+ * A Resource that loads its data only on-demand from a EPUB book file.
  * This way larger books can fit into memory and can be opened faster.
- *
  */
 public class LazyResource extends Resource {
 
   private static final long serialVersionUID = 5089400472352002866L;
-
-  private String filename;
-  private long cachedSize;
-
   private static final Logger log = Logger.create(LazyResource.class);
+
+  private final LazyResourceProvider resourceProvider;
+  private final long cachedSize;
 
   /**
    * Creates a Lazy resource, by not actually loading the data for this entry.
    *
    * The data will be loaded on the first call to getData()
    *
-   * @param filename the file name for the epub we're created from.
+   * @param resourceProvider
    * @param size the size of this resource.
    * @param href The resource's href within the epub.
    */
-  public LazyResource(String filename, long size, String href) {
+  public LazyResource(
+      LazyResourceProvider resourceProvider, long size, String href) {
     super(null, null, href, MediaTypes.determineMediaType(href));
-    this.filename = filename;
+    this.resourceProvider = resourceProvider;
     this.cachedSize = size;
-  }
-
-  /**
-   * Creates a Resource that tries to load the data, but falls back to lazy loading.
-   *
-   * If the size of the resource is known ahead of time we can use that to allocate
-   * a matching byte[]. If this succeeds we can safely load the data.
-   *
-   * If it fails we leave the data null for now and it will be lazy-loaded when
-   * it is accessed.
-   *
-   * @param in
-   * @param filename
-   * @param length
-   * @param href
-   * @throws IOException
-   */
-  public LazyResource(InputStream in, String filename, int length, String href)
-      throws IOException {
-    super(null, IOUtil.toByteArray(in, length), href,
-        MediaTypes.determineMediaType(href));
-    this.filename = filename;
-    this.cachedSize = length;
   }
 
   /**
@@ -72,7 +45,7 @@ public class LazyResource extends Resource {
     if (isInitialized()) {
       return new ByteArrayInputStream(getData());
     } else {
-      return getResourceStream();
+      return resourceProvider.getResourceStream(this.originalHref);
     }
   }
 
@@ -98,15 +71,13 @@ public class LazyResource extends Resource {
 
     if (data == null) {
 
-      log.debug(
-          "Initializing lazy resource " + filename + "#" + this.getHref());
+      log.debug("Initializing lazy resource: " + this.getHref());
 
-      InputStream in = getResourceStream();
+      InputStream in = resourceProvider.getResourceStream(this.originalHref);
       byte[] readData = IOUtil.toByteArray(in, (int) this.cachedSize);
       if (readData == null) {
         throw new IOException(
-            "Could not load the contents of entry " + this.getHref()
-                + " from epub file " + filename);
+            "Could not load the contents of resource: " + this.getHref());
       } else {
         this.data = readData;
       }
@@ -117,26 +88,13 @@ public class LazyResource extends Resource {
     return data;
   }
 
-
-  private InputStream getResourceStream() throws FileNotFoundException,
-      IOException {
-    ZipFile zipFile = new ZipFile(filename);
-    ZipEntry zipEntry = zipFile.getEntry(originalHref);
-    if (zipEntry == null) {
-      zipFile.close();
-      throw new IllegalStateException(
-          "Cannot find entry " + originalHref + " in epub file " + filename);
-    }
-    return new ResourceInputStream(zipFile.getInputStream(zipEntry), zipFile);
-  }
-
   /**
    * Tells this resource to release its cached data.
    *
    * If this resource was not lazy-loaded, this is a no-op.
    */
   public void close() {
-    if (this.filename != null) {
+    if (this.resourceProvider != null) {
       this.data = null;
     }
   }

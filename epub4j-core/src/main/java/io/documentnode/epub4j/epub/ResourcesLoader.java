@@ -1,10 +1,12 @@
 package io.documentnode.epub4j.epub;
 
+import io.documentnode.epub4j.domain.EpubResourceProvider;
 import io.documentnode.epub4j.domain.LazyResource;
+import io.documentnode.epub4j.domain.LazyResourceProvider;
 import io.documentnode.epub4j.domain.MediaType;
+import io.documentnode.epub4j.domain.MediaTypes;
 import io.documentnode.epub4j.domain.Resource;
 import io.documentnode.epub4j.domain.Resources;
-import io.documentnode.epub4j.domain.MediaTypes;
 import io.documentnode.epub4j.util.CollectionUtil;
 import io.documentnode.epub4j.util.ResourceUtil;
 import io.documentnode.minilog.Logger;
@@ -45,6 +47,9 @@ public class ResourcesLoader {
       String defaultHtmlEncoding,
       List<MediaType> lazyLoadedTypes) throws IOException {
 
+    LazyResourceProvider resourceProvider =
+        new EpubResourceProvider(zipFile.getName());
+
     Resources result = new Resources();
     Enumeration<? extends ZipEntry> entries = zipFile.entries();
 
@@ -60,8 +65,7 @@ public class ResourcesLoader {
       Resource resource;
 
       if (shouldLoadLazy(href, lazyLoadedTypes)) {
-        resource = new LazyResource(zipFile.getName(), zipEntry.getSize(),
-            href);
+        resource = new LazyResource(resourceProvider, zipEntry.getSize(), href);
       } else {
         resource = ResourceUtil
             .createResource(zipEntry, zipFile.getInputStream(zipEntry));
@@ -150,7 +154,8 @@ public class ResourcesLoader {
    * Loads all entries from the ZipInputStream as Resources.
    *
    * Loads the contents of all ZipEntries into memory.
-   * Is fast, but may lead to memory problems when reading large books on devices with small amounts of memory.
+   * Is fast, but may lead to memory problems when reading large books
+   * on devices with small amounts of memory.
    *
    * @param zipFile
    * @param defaultHtmlEncoding
@@ -159,7 +164,6 @@ public class ResourcesLoader {
    */
   public static Resources loadResources(ZipFile zipFile,
       String defaultHtmlEncoding) throws IOException {
-    return loadResources(zipFile, defaultHtmlEncoding,
-        Collections.<MediaType>emptyList());
+    return loadResources(zipFile, defaultHtmlEncoding, Collections.emptyList());
   }
 }

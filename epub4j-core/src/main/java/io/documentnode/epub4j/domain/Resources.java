@@ -24,7 +24,7 @@ public class Resources implements Serializable {
   private static final String ITEM_PREFIX = "item_";
   private int lastId = 1;
 
-  private Map<String, Resource> resources = new HashMap<String, Resource>();
+  private Map<String, Resource> resources = new HashMap<>();
 
   /**
    * Adds a resource to the resources.
