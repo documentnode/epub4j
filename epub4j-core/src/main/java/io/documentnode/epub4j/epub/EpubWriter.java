@@ -1,8 +1,8 @@
 package io.documentnode.epub4j.epub;
 
 import io.documentnode.epub4j.domain.Book;
-import io.documentnode.epub4j.domain.Resource;
 import io.documentnode.epub4j.domain.MediaTypes;
+import io.documentnode.epub4j.domain.Resource;
 import io.documentnode.epub4j.util.IOUtil;
 import io.documentnode.minilog.Logger;
 import java.io.IOException;
@@ -67,10 +67,10 @@ public class EpubWriter {
       }
       book.getSpine().setTocResource(tocResource);
       book.getResources().add(tocResource);
-    } catch (Exception e) {
+    } catch (Exception ex) {
       log.error(
-          "Error writing table of contents: " + e.getClass().getName() + ": "
-              + e.getMessage());
+          "Error writing table of contents: "
+              + ex.getClass().getName() + ": " + ex.getMessage(), ex);
     }
   }
 

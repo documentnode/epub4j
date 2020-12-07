@@ -4,10 +4,10 @@ import io.documentnode.epub4j.Constants;
 import io.documentnode.epub4j.domain.Book;
 import io.documentnode.epub4j.domain.Guide;
 import io.documentnode.epub4j.domain.GuideReference;
+import io.documentnode.epub4j.domain.MediaTypes;
 import io.documentnode.epub4j.domain.Resource;
 import io.documentnode.epub4j.domain.Spine;
 import io.documentnode.epub4j.domain.SpineReference;
-import io.documentnode.epub4j.domain.MediaTypes;
 import io.documentnode.epub4j.util.StringUtil;
 import io.documentnode.minilog.Logger;
 import java.io.IOException;
@@ -71,8 +71,10 @@ public class PackageDocumentWriter extends PackageDocumentBase {
       XmlSerializer serializer)
       throws IllegalArgumentException, IllegalStateException, IOException {
     serializer.startTag(NAMESPACE_OPF, OPFTags.spine);
+    Resource tocResource = book.getSpine().getTocResource();
+    String tocResourceId = tocResource.getId();
     serializer.attribute(EpubWriter.EMPTY_NAMESPACE_PREFIX, OPFAttributes.toc,
-        book.getSpine().getTocResource().getId());
+        tocResourceId);
 
     if (book.getCoverPage() != null // there is a cover page
         && book.getSpine().findFirstResourceById(book.getCoverPage().getId())
