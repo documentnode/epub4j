@@ -13,7 +13,10 @@ public class PackageDocumentBase {
   public static final String NAMESPACE_OPF = "http://www.idpf.org/2007/opf";
   public static final String NAMESPACE_DUBLIN_CORE = "http://purl.org/dc/elements/1.1/";
   public static final String PREFIX_DUBLIN_CORE = "dc";
-  public static final String PREFIX_OPF = "opf";
+  //epub3 no opt prefix
+  public static final String PREFIX_OPF = "";
+  //Add the version field to distinguish the version of EPUB file
+  public static final String version="version";
   public static final String dateFormat = "yyyy-MM-dd";
 
   protected interface DCTags {
