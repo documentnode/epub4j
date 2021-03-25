@@ -27,6 +27,15 @@ public class Resource implements Serializable {
   private MediaType mediaType;
   private String inputEncoding = Constants.CHARACTER_ENCODING;
   protected byte[] data;
+  private String properties;
+  
+  public String getProperties() {
+    return properties;
+  }
+
+  public void setProperties(String properties) {
+    this.properties = properties;
+  }
 
   /**
    * Creates an empty Resource with the given href.
