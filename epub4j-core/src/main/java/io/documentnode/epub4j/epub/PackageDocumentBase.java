@@ -76,6 +76,7 @@ public class PackageDocumentBase {
     String version = "version";
     String scheme = "scheme";
     String property = "property";
+    String properties="properties";
   }
 
   protected interface OPFValues {
