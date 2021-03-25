@@ -291,6 +291,17 @@ public class Resources implements Serializable {
     Resource result = resources.get(href);
     return result;
   }
+   public Resource getByProperties(String properties) {
+    if (StringUtil.isBlank(properties)) {
+      return null;
+    }
+    for (Resource resource : resources.values()) {
+      if (properties.equals(resource.getProperties())) {
+        return resource;
+      }
+    }
+    return null;
+  }
 
   /**
    * Gets the first resource (random order) with the give mediatype.
