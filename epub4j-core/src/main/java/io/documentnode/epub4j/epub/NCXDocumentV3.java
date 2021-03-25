@@ -203,7 +203,7 @@ public class NCXDocumentV3 extends NCXDocument {
         try {
             result = URLDecoder.decode(result, Constants.CHARACTER_ENCODING);
         } catch (UnsupportedEncodingException e) {
-            Log.e(TAG, e.getMessage());
+            //Log.e(TAG, e.getMessage());
         }
 
         return result;
