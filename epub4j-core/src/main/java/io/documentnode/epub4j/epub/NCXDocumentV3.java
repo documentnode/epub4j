@@ -19,7 +19,7 @@ import java.util.List;
 
 import io.documentnode.epub4j;
 //import me.ag2s.epublib.domain.Author;
-importio.documentnode.epub4j.domain.Book;
+import io.documentnode.epub4j.domain.Book;
 //import me.ag2s.epublib.domain.Identifier;
 //import me.ag2s.epublib.domain.MediaTypes;
 import io.documentnode.epub4j.domain.Resource;
