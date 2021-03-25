@@ -74,7 +74,7 @@ public class NCXDocument {
   }
 
   public static Resource read(Book book, EpubReader epubReader) {
-    Log.d(TAG, book.getVersion());
+    //Log.d(TAG, book.getVersion());
         String version = book.getVersion();
         if (version.startsWith("2.")) {
             return NCXDocumentV2.read(book, epubReader);
