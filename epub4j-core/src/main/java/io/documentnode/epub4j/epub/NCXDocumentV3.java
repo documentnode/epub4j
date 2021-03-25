@@ -79,7 +79,7 @@ public class NCXDocumentV3 extends NCXDocument {
     public static Resource read(Book book, EpubReader epubReader) {
         Resource ncxResource = null;
         if (book.getSpine().getTocResource() == null) {
-            Log.e(TAG, "Book does not contain a table of contents file");
+            //Log.e(TAG, "Book does not contain a table of contents file");
             return ncxResource;
         }
         try {
@@ -94,14 +94,14 @@ public class NCXDocumentV3 extends NCXDocument {
 
             Element navMapElement = (Element) ncxDocument.getElementsByTagName("nav").item(0);
             navMapElement = (Element) navMapElement.getElementsByTagName("ol").item(0);
-            Log.d(TAG, navMapElement.getTagName());
+            //Log.d(TAG, navMapElement.getTagName());
 
             TableOfContents tableOfContents = new TableOfContents(
                     readTOCReferences(navMapElement.getChildNodes(), book));
-            Log.d(TAG, tableOfContents.toString());
+            //Log.d(TAG, tableOfContents.toString());
             book.setTableOfContents(tableOfContents);
         } catch (Exception e) {
-            Log.e(TAG, e.getMessage(), e);
+            //Log.e(TAG, e.getMessage(), e);
         }
         return ncxResource;
     }
@@ -176,7 +176,7 @@ public class NCXDocumentV3 extends NCXDocument {
                 .substringAfter(reference, Constants.FRAGMENT_SEPARATOR_CHAR);
         Resource resource = book.getResources().getByHref(href);
         if (resource == null) {
-            Log.e(TAG, "Resource with href " + href + " in NCX document not found");
+            //Log.e(TAG, "Resource with href " + href + " in NCX document not found");
         }
         //父级目录
         TOCReference result = new TOCReference(label, resource, fragmentId);
