@@ -1,4 +1,4 @@
-package me.ag2s.epublib.epub;
+package io.documentnode.epub4j.epub;
 
 import android.util.Log;
 
@@ -17,16 +17,16 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-import me.ag2s.epublib.Constants;
-import me.ag2s.epublib.domain.Author;
-import me.ag2s.epublib.domain.Book;
-import me.ag2s.epublib.domain.Identifier;
-import me.ag2s.epublib.domain.MediaTypes;
-import me.ag2s.epublib.domain.Resource;
-import me.ag2s.epublib.domain.TOCReference;
-import me.ag2s.epublib.domain.TableOfContents;
-import me.ag2s.epublib.util.ResourceUtil;
-import me.ag2s.epublib.util.StringUtil;
+import io.documentnode.epub4j.Constants;
+import io.documentnode.epub4j.domain.Author;
+import io.documentnode.epub4j.domain.Book;
+import io.documentnode.epub4j.domain.Identifier;
+import io.documentnode.epub4j.domain.MediaTypes;
+import io.documentnode.epub4j.domain.Resource;
+import io.documentnode.epub4j.domain.TOCReference;
+import io.documentnode.epub4j.domain.TableOfContents;
+import io.documentnode.epub4j.util.ResourceUtil;
+import io.documentnode.epub4j.util.StringUtil;
 
 /**
  * Writes the ncx document as defined by namespace http://www.daisy.org/z3986/2005/ncx/
