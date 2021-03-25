@@ -17,7 +17,7 @@ import java.util.List;
 //import java.util.zip.ZipEntry;
 //import java.util.zip.ZipOutputStream;
 
-import io.documentnode.epub4j;
+import io.documentnode.epub4j.Constants;
 //import me.ag2s.epublib.domain.Author;
 import io.documentnode.epub4j.domain.Book;
 //import me.ag2s.epublib.domain.Identifier;
