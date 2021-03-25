@@ -1,6 +1,6 @@
 package io.documentnode.epub4j.epub;
 
-import android.util.Log;
+//import android.util.Log;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -78,7 +78,7 @@ public class NCXDocumentV2 extends NCXDocument{
   public static Resource read(Book book, EpubReader epubReader) {
     Resource ncxResource = null;
     if (book.getSpine().getTocResource() == null) {
-      Log.e(TAG,"Book does not contain a table of contents file");
+      //Log.e(TAG,"Book does not contain a table of contents file");
       return ncxResource;
     }
     try {
@@ -86,7 +86,7 @@ public class NCXDocumentV2 extends NCXDocument{
       if (ncxResource == null) {
         return ncxResource;
       }
-      Log.d(TAG,ncxResource.getHref());
+      //Log.d(TAG,ncxResource.getHref());
       Document ncxDocument = ResourceUtil.getAsDocument(ncxResource);
       Element navMapElement = DOMUtil
           .getFirstElementByTagNameNS(ncxDocument.getDocumentElement(),
@@ -96,7 +96,7 @@ public class NCXDocumentV2 extends NCXDocument{
           readTOCReferences(navMapElement.getChildNodes(), book));
       book.setTableOfContents(tableOfContents);
     } catch (Exception e) {
-      Log.e(TAG,e.getMessage(), e);
+      //Log.e(TAG,e.getMessage(), e);
     }
     return ncxResource;
   }
