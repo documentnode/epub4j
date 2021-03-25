@@ -51,6 +51,15 @@ public class Book implements Serializable {
   private Resource opfResource;
   private Resource ncxResource;
   private Resource coverImage;
+  private String version;
+
+  public String getVersion() {
+    return version;
+  }
+
+  public void setVersion(String version) {
+    this.version = version;
+  }
 
   public TOCReference addSection(
       TOCReference parentSection, String sectionTitle, Resource resource) {
