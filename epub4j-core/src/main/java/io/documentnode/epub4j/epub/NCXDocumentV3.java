@@ -1,6 +1,6 @@
-package me.ag2s.epublib.epub;
+package io.documentnode.epub4j;
 
-import android.util.Log;
+//import android.util.Log;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -17,16 +17,16 @@ import java.util.List;
 //import java.util.zip.ZipEntry;
 //import java.util.zip.ZipOutputStream;
 
-import me.ag2s.epublib.Constants;
+import io.documentnode.epub4j;
 //import me.ag2s.epublib.domain.Author;
-import me.ag2s.epublib.domain.Book;
+importio.documentnode.epub4j.domain.Book;
 //import me.ag2s.epublib.domain.Identifier;
 //import me.ag2s.epublib.domain.MediaTypes;
-import me.ag2s.epublib.domain.Resource;
-import me.ag2s.epublib.domain.TOCReference;
-import me.ag2s.epublib.domain.TableOfContents;
-import me.ag2s.epublib.util.ResourceUtil;
-import me.ag2s.epublib.util.StringUtil;
+import io.documentnode.epub4j.domain.Resource;
+import io.documentnode.epub4j.domain.TOCReference;
+import io.documentnode.epub4j.domain.TableOfContents;
+import io.documentnode.epub4j.util.ResourceUtil;
+import io.documentnode.epub4j.util.StringUtil;
 
 public class NCXDocumentV3 extends NCXDocument {
     public static final String NAMESPACE_NCX = "";
