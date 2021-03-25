@@ -337,6 +337,11 @@ public class PackageDocumentReader extends PackageDocumentBase {
         }
       }
     }
+     //For EPUB3
+    if (tocResource==null){
+       tocResource=resources.getByProperties("nav");
+    }
+
 
     if (tocResource == null) {
       log.error(
