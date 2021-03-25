@@ -51,6 +51,8 @@ public class PackageDocumentReader extends PackageDocumentBase {
     String packageHref = packageResource.getHref();
     resources = fixHrefs(packageHref, resources);
     readGuide(packageDocument, epubReader, book, resources);
+    String version=DOMUtil.getAttribute(packageDocument.getDocumentElement(),PREFIX_OPF,PackageDocumentBase.version);
+    book.setVersion(version);
 
     // Books sometimes use non-identifier ids. We map these here to legal ones
     Map<String, String> idMapping = new HashMap<String, String>();
