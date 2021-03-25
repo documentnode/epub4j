@@ -112,6 +112,7 @@ public class PackageDocumentReader extends PackageDocumentBase {
           .getAttribute(itemElement, NAMESPACE_OPF, OPFAttributes.id);
       String href = DOMUtil
           .getAttribute(itemElement, NAMESPACE_OPF, OPFAttributes.href);
+      String properties=DOMUtil.getAttribute(itemElement,NAMESPACE_OPF,OPFAttributes.properties);
       try {
         href = URLDecoder.decode(href, Constants.CHARACTER_ENCODING);
       } catch (UnsupportedEncodingException e) {
@@ -125,6 +126,7 @@ public class PackageDocumentReader extends PackageDocumentBase {
         continue;
       }
       resource.setId(id);
+      resource.setProperties(properties);
       MediaType mediaType = MediaTypes.getMediaTypeByName(mediaTypeName);
       if (mediaType != null) {
         resource.setMediaType(mediaType);
