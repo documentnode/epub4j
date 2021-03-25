@@ -141,7 +141,7 @@ public class NCXDocumentV2 extends NCXDocument{
         .substringAfter(reference, Constants.FRAGMENT_SEPARATOR_CHAR);
     Resource resource = book.getResources().getByHref(href);
     if (resource == null) {
-      Log.e(TAG,"Resource with href " + href + " in NCX document not found");
+      //Log.e(TAG,"Resource with href " + href + " in NCX document not found");
     }
     TOCReference result = new TOCReference(label, resource, fragmentId);
     List<TOCReference> childTOCReferences = readTOCReferences(
@@ -159,7 +159,7 @@ public class NCXDocumentV2 extends NCXDocument{
     try {
       result = URLDecoder.decode(result, Constants.CHARACTER_ENCODING);
     } catch (UnsupportedEncodingException e) {
-      Log.e(TAG,e.getMessage());
+      //Log.e(TAG,e.getMessage());
     }
     return result;
   }
