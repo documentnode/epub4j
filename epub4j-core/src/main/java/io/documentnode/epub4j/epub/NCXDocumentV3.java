@@ -1,4 +1,4 @@
-package io.documentnode.epub4j;
+package io.documentnode.epub4j.epub;
 
 //import android.util.Log;
 
