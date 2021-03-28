@@ -1,9 +1,11 @@
 package io.documentnode.epub4j.domain;
 
+
+import net.sf.jazzlib.ZipFile;
+
 import java.io.FilterInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.zip.ZipFile;
 
 /**
  * A wrapper class for closing a ZipFile object when the InputStream derived

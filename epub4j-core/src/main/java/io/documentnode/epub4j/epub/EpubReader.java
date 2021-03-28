@@ -2,6 +2,8 @@ package io.documentnode.epub4j.epub;
 
 //import android.util.Log;
 
+import net.sf.jazzlib.ZipFile;
+import net.sf.jazzlib.ZipInputStream;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -9,8 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
-import java.util.zip.ZipFile;
-import java.util.zip.ZipInputStream;
+
 
 import io.documentnode.epub4j.Constants;
 import io.documentnode.epub4j.domain.Book;
@@ -129,7 +130,7 @@ public class EpubReader {
         if (book.isEpub3()) {
             return NCXDocumentV3.read(book, this);
         } else {
-            return NCXDocumentV2.read(book, this);
+            return NCXDocument.read(book, this);
         }
 
     }

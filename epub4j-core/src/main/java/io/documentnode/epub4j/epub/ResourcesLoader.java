@@ -11,16 +11,17 @@ import io.documentnode.epub4j.domain.Resource;
 import io.documentnode.epub4j.domain.Resources;
 import io.documentnode.epub4j.util.CollectionUtil;
 import io.documentnode.epub4j.util.ResourceUtil;
+import net.sf.jazzlib.ZipEntry;
+import net.sf.jazzlib.ZipException;
+import net.sf.jazzlib.ZipFile;
+import net.sf.jazzlib.ZipInputStream;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Enumeration;
 import java.util.List;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipException;
-import java.util.zip.ZipFile;
-import java.util.zip.ZipInputStream;
+
 
 
 /**

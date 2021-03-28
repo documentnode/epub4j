@@ -2,6 +2,8 @@ package io.documentnode.epub4j.epub;
 
 //import android.util.Log;
 
+import net.sf.jazzlib.ZipEntry;
+import net.sf.jazzlib.ZipOutputStream;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -14,8 +16,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipOutputStream;
+
 
 import io.documentnode.epub4j.Constants;
 import io.documentnode.epub4j.domain.Author;
@@ -33,7 +34,7 @@ import io.documentnode.epub4j.util.StringUtil;
  *
  * @author paul
  */
-public class NCXDocumentV2 {
+public class NCXDocument {
 
     public static final String NAMESPACE_NCX = "http://www.daisy.org/z3986/2005/ncx/";
     @SuppressWarnings("unused")
@@ -42,8 +43,7 @@ public class NCXDocumentV2 {
     public static final String DEFAULT_NCX_HREF = "toc.ncx";
     public static final String PREFIX_DTB = "dtb";
 
-    private static final String TAG = NCXDocumentV2.class.getName();
-
+    //private static final String TAG = NCXDocument
     private interface NCXTags {
 
         String ncx = "ncx";
