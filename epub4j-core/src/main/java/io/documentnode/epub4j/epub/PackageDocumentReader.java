@@ -346,6 +346,7 @@ public class PackageDocumentReader extends PackageDocumentBase {
     //For EPUB3
     if (tocResource==null){
        tocResource=resources.getByProperties("nav");
+       tocResource.setMediaType(MediaTypes.NCX);
     }
 
     if (tocResource == null) {

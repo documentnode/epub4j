@@ -2,8 +2,7 @@ package io.documentnode.epub4j.epub;
 
 //import android.util.Log;
 
-import net.sf.jazzlib.ZipEntry;
-import net.sf.jazzlib.ZipOutputStream;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -16,6 +15,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 
 import io.documentnode.epub4j.Constants;

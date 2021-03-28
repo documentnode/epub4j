@@ -1,11 +1,12 @@
 package io.documentnode.epub4j.domain;
 
 
-import net.sf.jazzlib.ZipEntry;
-import net.sf.jazzlib.ZipFile;
+
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 
 /**
  * @author jake

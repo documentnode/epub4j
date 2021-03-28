@@ -11,10 +11,11 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.util.zip.CRC32;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
-import net.sf.jazzlib.CRC32;
-import net.sf.jazzlib.ZipEntry;
-import net.sf.jazzlib.ZipOutputStream;
+
 import org.xmlpull.v1.XmlSerializer;
 
 /**
