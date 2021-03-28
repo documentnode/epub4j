@@ -133,7 +133,7 @@ public class ByteOrderMark implements Serializable {
      * Return the hashcode for this BOM.
      *
      * @return the hashcode for this BOM.
-     * @see java.lang.Object#hashCode()
+     * @see Object#hashCode()
      */
     @Override
     public int hashCode() {
@@ -150,6 +150,7 @@ public class ByteOrderMark implements Serializable {
      * @return the length of the BOM's bytes
      */
     @Override
+    @SuppressWarnings("NullableProblems")
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append(getClass().getSimpleName());

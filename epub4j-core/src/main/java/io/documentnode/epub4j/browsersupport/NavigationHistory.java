@@ -2,6 +2,8 @@ package io.documentnode.epub4j.browsersupport;
 
 import io.documentnode.epub4j.domain.Book;
 import io.documentnode.epub4j.domain.Resource;
+import io.documentnode.epub4j.domain.Book;
+import io.documentnode.epub4j.domain.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,8 +38,8 @@ public class NavigationHistory implements NavigationEventListener {
   }
 
   private long lastUpdateTime = 0;
-  private List<Location> locations = new ArrayList<Location>();
-  private Navigator navigator;
+  private List<Location> locations = new ArrayList<>();
+  private final Navigator navigator;
   private int currentPos = -1;
   private int currentSize = 0;
   private int maxHistorySize = DEFAULT_MAX_HISTORY_SIZE;
@@ -62,7 +64,7 @@ public class NavigationHistory implements NavigationEventListener {
     if (book == null) {
       return;
     }
-    locations = new ArrayList<Location>();
+    locations = new ArrayList<>();
     currentPos = -1;
     currentSize = 0;
     if (navigator.getCurrentResource() != null) {
@@ -103,8 +105,8 @@ public class NavigationHistory implements NavigationEventListener {
    * <br/>
    * If this nr of locations becomes larger then the historySize then the
    * first item(s) will be removed.
-   *
-   * @param location
+   *v
+   * @param location  d
    */
   public void addLocation(Location location) {
     // do nothing if the new location matches the current location
@@ -151,7 +153,7 @@ public class NavigationHistory implements NavigationEventListener {
    * move(-1) to go one position back in history.<br/>
    * move(1) to go one position forward.<br/>
    *
-   * @param delta
+   * @param delta f
    *
    * @return Whether we actually moved. If the requested value is illegal
    * it will return false, true otherwise.

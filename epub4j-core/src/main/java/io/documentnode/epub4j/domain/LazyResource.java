@@ -1,7 +1,8 @@
 package io.documentnode.epub4j.domain;
 
+//import android.util.Log;
+
 import io.documentnode.epub4j.util.IOUtil;
-import io.documentnode.minilog.Logger;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,7 +14,7 @@ import java.io.InputStream;
 public class LazyResource extends Resource {
 
   private static final long serialVersionUID = 5089400472352002866L;
-  private static final Logger log = Logger.create(LazyResource.class);
+  private  final String TAG= getClass().getName();
 
   private final LazyResourceProvider resourceProvider;
   private final long cachedSize;
@@ -49,7 +50,7 @@ public class LazyResource extends Resource {
    *
    * @return The contents of the Resource.
    *
-   * @throws IOException
+   * @throws IOException IOException
    */
   public InputStream getInputStream() throws IOException {
     if (isInitialized()) {
@@ -62,7 +63,7 @@ public class LazyResource extends Resource {
   /**
    * Initializes the resource by loading its data into memory.
    *
-   * @throws IOException
+   * @throws IOException IOException
    */
   public void initialize() throws IOException {
     getData();
@@ -81,7 +82,7 @@ public class LazyResource extends Resource {
 
     if (data == null) {
 
-      log.debug("Initializing lazy resource: " + this.getHref());
+      ////Log.d(TAG, "Initializing lazy resource: " + this.getHref());
 
       InputStream in = resourceProvider.getResourceStream(this.originalHref);
       byte[] readData = IOUtil.toByteArray(in, (int) this.cachedSize);

@@ -1,9 +1,10 @@
 package io.documentnode.epub4j.browsersupport;
 
+import java.util.EventObject;
+
 import io.documentnode.epub4j.domain.Book;
 import io.documentnode.epub4j.domain.Resource;
 import io.documentnode.epub4j.util.StringUtil;
-import java.util.EventObject;
 
 /**
  * Used to tell NavigationEventListener just what kind of navigation action
@@ -12,6 +13,7 @@ import java.util.EventObject;
  * @author paul
  *
  */
+@SuppressWarnings("unused")
 public class NavigationEvent extends EventObject {
 
   private static final long serialVersionUID = -6346750144308952762L;
@@ -134,6 +136,7 @@ public class NavigationEvent extends EventObject {
     return oldResource != getCurrentResource();
   }
 
+  @SuppressWarnings("NullableProblems")
   public String toString() {
     return StringUtil.toString(
         "oldSectionPos", oldSectionPos,

@@ -1,20 +1,24 @@
 package io.documentnode.epub4j.epub;
 
+//import android.util.Log;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.xml.namespace.QName;
+
 import io.documentnode.epub4j.domain.Author;
 import io.documentnode.epub4j.domain.Date;
 import io.documentnode.epub4j.domain.Identifier;
 import io.documentnode.epub4j.domain.Metadata;
 import io.documentnode.epub4j.util.StringUtil;
-import io.documentnode.minilog.Logger;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import javax.xml.namespace.QName;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 /**
  * Reads the package document metadata.
@@ -26,8 +30,7 @@ import org.w3c.dom.NodeList;
 // package
 class PackageDocumentMetadataReader extends PackageDocumentBase {
 
-  private static final Logger log = Logger
-      .create(PackageDocumentMetadataReader.class);
+  private static final String TAG= PackageDocumentMetadataReader.class.getName();
 
   public static Metadata readMetadata(Document packageDocument) {
     Metadata result = new Metadata();
@@ -35,7 +38,7 @@ class PackageDocumentMetadataReader extends PackageDocumentBase {
         .getFirstElementByTagNameNS(packageDocument.getDocumentElement(),
             NAMESPACE_OPF, OPFTags.metadata);
     if (metadataElement == null) {
-      log.error("Package does not contain element " + OPFTags.metadata);
+      //Log.e(TAG,"Package does not contain element " + OPFTags.metadata);
       return result;
     }
     result.setTitles(DOMUtil
@@ -75,12 +78,12 @@ class PackageDocumentMetadataReader extends PackageDocumentBase {
   /**
    * consumes meta tags that have a property attribute as defined in the standard. For example:
    * &lt;meta property="rendition:layout"&gt;pre-paginated&lt;/meta&gt;
-   * @param metadataElement
-   * @return
+   * @param metadataElement metadataElement
+   * @return Map<QName, String>
    */
   private static Map<QName, String> readOtherProperties(
       Element metadataElement) {
-    Map<QName, String> result = new HashMap<QName, String>();
+    Map<QName, String> result = new HashMap<>();
 
     NodeList metaTags = metadataElement.getElementsByTagName(OPFTags.meta);
     for (int i = 0; i < metaTags.getLength(); i++) {
@@ -100,12 +103,12 @@ class PackageDocumentMetadataReader extends PackageDocumentBase {
   /**
    * consumes meta tags that have a property attribute as defined in the standard. For example:
    * &lt;meta property="rendition:layout"&gt;pre-paginated&lt;/meta&gt;
-   * @param metadataElement
-   * @return
+   * @param metadataElement metadataElement
+   * @return Map<String, String>
    */
   private static Map<String, String> readMetaProperties(
       Element metadataElement) {
-    Map<String, String> result = new HashMap<String, String>();
+    Map<String, String> result = new HashMap<>();
 
     NodeList metaTags = metadataElement.getElementsByTagName(OPFTags.meta);
     for (int i = 0; i < metaTags.getLength(); i++) {
@@ -125,9 +128,8 @@ class PackageDocumentMetadataReader extends PackageDocumentBase {
     if (packageElement == null) {
       return null;
     }
-    String result = packageElement
+    return packageElement
         .getAttributeNS(NAMESPACE_OPF, OPFAttributes.uniqueIdentifier);
-    return result;
   }
 
   private static List<Author> readCreators(Element metadataElement) {
@@ -142,7 +144,7 @@ class PackageDocumentMetadataReader extends PackageDocumentBase {
       Element metadataElement) {
     NodeList elements = metadataElement
         .getElementsByTagNameNS(NAMESPACE_DUBLIN_CORE, authorTag);
-    List<Author> result = new ArrayList<Author>(elements.getLength());
+    List<Author> result = new ArrayList<>(elements.getLength());
     for (int i = 0; i < elements.getLength(); i++) {
       Element authorElement = (Element) elements.item(i);
       Author author = createAuthor(authorElement);
@@ -157,7 +159,7 @@ class PackageDocumentMetadataReader extends PackageDocumentBase {
   private static List<Date> readDates(Element metadataElement) {
     NodeList elements = metadataElement
         .getElementsByTagNameNS(NAMESPACE_DUBLIN_CORE, DCTags.date);
-    List<Date> result = new ArrayList<Date>(elements.getLength());
+    List<Date> result = new ArrayList<>(elements.getLength());
     for (int i = 0; i < elements.getLength(); i++) {
       Element dateElement = (Element) elements.item(i);
       Date date;
@@ -166,7 +168,7 @@ class PackageDocumentMetadataReader extends PackageDocumentBase {
             dateElement.getAttributeNS(NAMESPACE_OPF, OPFAttributes.event));
         result.add(date);
       } catch (IllegalArgumentException e) {
-        log.error(e.getMessage());
+        //Log.e(TAG,e.getMessage());
       }
     }
     return result;
@@ -196,12 +198,12 @@ class PackageDocumentMetadataReader extends PackageDocumentBase {
     NodeList identifierElements = metadataElement
         .getElementsByTagNameNS(NAMESPACE_DUBLIN_CORE, DCTags.identifier);
     if (identifierElements.getLength() == 0) {
-      log.error("Package does not contain element " + DCTags.identifier);
-      return new ArrayList<Identifier>();
+      //Log.e(TAG,"Package does not contain element " + DCTags.identifier);
+      return new ArrayList<>();
     }
     String bookIdId = getBookIdId(metadataElement.getOwnerDocument());
-    List<Identifier> result = new ArrayList<Identifier>(
-        identifierElements.getLength());
+    List<Identifier> result = new ArrayList<>(
+            identifierElements.getLength());
     for (int i = 0; i < identifierElements.getLength(); i++) {
       Element identifierElement = (Element) identifierElements.item(i);
       String schemeName = identifierElement

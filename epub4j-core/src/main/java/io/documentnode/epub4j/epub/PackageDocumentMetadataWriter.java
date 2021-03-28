@@ -17,11 +17,11 @@ public class PackageDocumentMetadataWriter extends PackageDocumentBase {
   /**
    * Writes the book's metadata.
    *
-   * @param book
-   * @param serializer
-   * @throws IOException
-   * @throws IllegalStateException
-   * @throws IllegalArgumentException
+   * @param book book
+   * @param serializer serializer
+   * @throws  IOException IOException
+   * @throws  IllegalStateException IllegalStateException
+   * @throws IllegalArgumentException IllegalArgumentException
    */
   public static void writeMetaData(Book book, XmlSerializer serializer)
       throws IllegalArgumentException, IllegalStateException, IOException {
@@ -139,11 +139,10 @@ public class PackageDocumentMetadataWriter extends PackageDocumentBase {
    * The first identifier for which the bookId is true is made the bookId identifier.
    * If no identifier has bookId == true then the first bookId identifier is written as the primary.
    *
-   * @param identifiers
-   * @param serializer
-   * @throws IOException
-   * @throws IllegalStateException
-   * @throws IllegalArgumentException
+   * @param identifiers identifiers
+   * @param serializer serializer
+   * @throws IllegalStateException e
+   * @throws IllegalArgumentException e
    * @
    */
   private static void writeIdentifiers(List<Identifier> identifiers,
