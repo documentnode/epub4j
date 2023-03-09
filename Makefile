@@ -19,6 +19,9 @@ build:
 build-fast:
 	./gradlew build -Pcheck=false -x test
 
+release:
+	./gradlew release -Prelease.useAutomaticVersion=true
+
 publish: build
 	rm -rf $$HOME/.m2/repository/io/documentnode/epub4j-core
 	./gradlew publishToMavenLocal

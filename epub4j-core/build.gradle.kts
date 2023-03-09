@@ -3,6 +3,10 @@ plugins {
 
   // https://github.com/lessthanoptimal/gversion-plugin
   id("com.peterabeles.gversion") version "1.9"
+
+  // https://github.com/researchgate/gradle-release
+  // https://plugins.gradle.org/plugin/net.researchgate.release
+  id("net.researchgate.release") version "3.0.2"
 }
 
 dependencies {
