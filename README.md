@@ -130,7 +130,7 @@ repositories {
 }
 
 dependencies {
-  implementation('io.documentnode.epub4j:epub4j-core:4.2') {
+  implementation('io.documentnode:epub4j-core:4.2.1') {
     exclude group: 'xmlpull'
   }
 }
