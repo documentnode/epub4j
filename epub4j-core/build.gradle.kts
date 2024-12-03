@@ -12,7 +12,7 @@ plugins {
 dependencies {
   implementation("net.sf.kxml:kxml2:2.3.0")
   implementation("xmlpull:xmlpull:1.1.3.4d_b4_min")
-  implementation("net.lingala.zip4j:zip4j:2.11.5")
+  api("net.lingala.zip4j:zip4j:2.11.5")
 }
 
 gversion {
