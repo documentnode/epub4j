@@ -13,8 +13,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
-import net.sf.jazzlib.ZipFile;
-import net.sf.jazzlib.ZipInputStream;
+
+import net.lingala.zip4j.ZipFile;
+import net.lingala.zip4j.io.inputstream.ZipInputStream;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 

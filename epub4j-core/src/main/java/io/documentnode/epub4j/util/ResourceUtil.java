@@ -2,22 +2,19 @@ package io.documentnode.epub4j.util;
 
 import io.documentnode.epub4j.Constants;
 import io.documentnode.epub4j.domain.MediaType;
+import io.documentnode.epub4j.domain.MediaTypes;
 import io.documentnode.epub4j.domain.Resource;
 import io.documentnode.epub4j.epub.EpubProcessorSupport;
-import io.documentnode.epub4j.domain.MediaTypes;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.Reader;
-import java.io.UnsupportedEncodingException;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.ParserConfigurationException;
-import net.sf.jazzlib.ZipEntry;
-import net.sf.jazzlib.ZipInputStream;
+import net.lingala.zip4j.io.inputstream.ZipInputStream;
+import net.lingala.zip4j.model.FileHeader;
+import net.lingala.zip4j.model.LocalFileHeader;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.*;
 
 /**
  * Various resource utility methods
@@ -60,15 +57,14 @@ public class ResourceUtil {
    * @return a resource created out of the given zipEntry and zipInputStream.
    * @throws IOException
    */
-  public static Resource createResource(ZipEntry zipEntry,
-      ZipInputStream zipInputStream) throws IOException {
-    return new Resource(zipInputStream, zipEntry.getName());
+  public static Resource createResource(LocalFileHeader zipEntry,
+                                        ZipInputStream zipInputStream) throws IOException {
+    return new Resource(zipInputStream, zipEntry.getFileName());
 
   }
-
-  public static Resource createResource(ZipEntry zipEntry,
-      InputStream zipInputStream) throws IOException {
-    return new Resource(zipInputStream, zipEntry.getName());
+  public static Resource createResource(FileHeader zipEntry,
+                                        ZipInputStream zipInputStream) throws IOException {
+    return new Resource(zipInputStream, zipEntry.getFileName());
 
   }
 

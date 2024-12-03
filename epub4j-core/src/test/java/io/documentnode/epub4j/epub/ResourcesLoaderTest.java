@@ -1,9 +1,6 @@
 package io.documentnode.epub4j.epub;
 
-import io.documentnode.epub4j.domain.LazyResource;
-import io.documentnode.epub4j.domain.Resource;
-import io.documentnode.epub4j.domain.Resources;
-import io.documentnode.epub4j.domain.MediaTypes;
+import io.documentnode.epub4j.domain.*;
 import io.documentnode.epub4j.util.IOUtil;
 import java.io.File;
 import java.io.FileInputStream;
@@ -14,9 +11,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import net.sf.jazzlib.ZipException;
-import net.sf.jazzlib.ZipFile;
-import net.sf.jazzlib.ZipInputStream;
+
+import net.lingala.zip4j.ZipFile;
+import net.lingala.zip4j.io.inputstream.ZipInputStream;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -66,7 +63,7 @@ public class ResourcesLoaderTest {
    * Loads the Resources from a zero length file, using ZipInputStream<br/>
    * See <a href="https://github.com/psiegman/epublib/issues/122">Issue #122 Infinite loop</a>.
    */
-  @Test(expected = ZipException.class)
+  @Test(expected = IOException.class)
   public void testLoadResources_ZipInputStream_WithZeroLengthFile()
       throws IOException {
     // given
@@ -81,7 +78,7 @@ public class ResourcesLoaderTest {
    * Loads the Resources from a file that is not a valid zip, using ZipInputStream<br/>
    * See <a href="https://github.com/psiegman/epublib/issues/122">Issue #122 Infinite loop</a>.
    */
-  @Test(expected = ZipException.class)
+  @Test(expected = IOException.class)
   public void testLoadResources_ZipInputStream_WithInvalidFile()
       throws IOException {
     // given
@@ -89,7 +86,8 @@ public class ResourcesLoaderTest {
         this.getClass().getResourceAsStream("/not_a_zip.epub"));
 
     // when
-    ResourcesLoader.loadResources(zipInputStream, encoding);
+    Resources resources = ResourcesLoader.loadResources(zipInputStream, encoding);
+    resources.getAll().forEach(System.out::println);
   }
 
   /**
@@ -148,7 +146,7 @@ public class ResourcesLoaderTest {
     Assert
         .assertEquals(Resource.class, resources.getById("chapter1").getClass());
   }
-
+  
   private void verifyResources(Resources resources) throws IOException {
     Assert.assertNotNull(resources);
     Assert.assertEquals(12, resources.getAll().size());
