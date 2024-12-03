@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.List;
 
 import net.lingala.zip4j.ZipFile;
+import net.lingala.zip4j.exception.ZipException;
 import net.lingala.zip4j.io.inputstream.ZipInputStream;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -63,7 +64,7 @@ public class ResourcesLoaderTest {
    * Loads the Resources from a zero length file, using ZipInputStream<br/>
    * See <a href="https://github.com/psiegman/epublib/issues/122">Issue #122 Infinite loop</a>.
    */
-  @Test(expected = IOException.class)
+  @Test(expected = ZipException.class)
   public void testLoadResources_ZipInputStream_WithZeroLengthFile()
       throws IOException {
     // given
@@ -78,7 +79,7 @@ public class ResourcesLoaderTest {
    * Loads the Resources from a file that is not a valid zip, using ZipInputStream<br/>
    * See <a href="https://github.com/psiegman/epublib/issues/122">Issue #122 Infinite loop</a>.
    */
-  @Test(expected = IOException.class)
+  @Test
   public void testLoadResources_ZipInputStream_WithInvalidFile()
       throws IOException {
     // given
@@ -87,7 +88,9 @@ public class ResourcesLoaderTest {
 
     // when
     Resources resources = ResourcesLoader.loadResources(zipInputStream, encoding);
-    resources.getAll().forEach(System.out::println);
+
+    // then
+    Assert.assertEquals(0, resources.getAll().size());
   }
 
   /**
@@ -146,7 +149,7 @@ public class ResourcesLoaderTest {
     Assert
         .assertEquals(Resource.class, resources.getById("chapter1").getClass());
   }
-  
+
   private void verifyResources(Resources resources) throws IOException {
     Assert.assertNotNull(resources);
     Assert.assertEquals(12, resources.getAll().size());

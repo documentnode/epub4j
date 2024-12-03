@@ -128,8 +128,7 @@ public class ResourcesLoader {
   private static LocalFileHeader getNextZipEntry(ZipInputStream zipInputStream)
       throws IOException {
     try {
-      LocalFileHeader nextEntry = zipInputStream.getNextEntry();
-      return nextEntry;
+      return zipInputStream.getNextEntry();
     } catch (IOException e) {
       //see <a href="https://github.com/psiegman/epublib/issues/122">Issue #122 Infinite loop</a>.
       //when reading a file that is not a real zip archive or a zero length file, zipInputStream.getNextEntry()
