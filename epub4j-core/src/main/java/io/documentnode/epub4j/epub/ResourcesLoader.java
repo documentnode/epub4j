@@ -1,30 +1,23 @@
 package io.documentnode.epub4j.epub;
 
-import io.documentnode.epub4j.domain.EpubResourceProvider;
-import io.documentnode.epub4j.domain.LazyResource;
-import io.documentnode.epub4j.domain.LazyResourceProvider;
-import io.documentnode.epub4j.domain.MediaType;
-import io.documentnode.epub4j.domain.MediaTypes;
-import io.documentnode.epub4j.domain.Resource;
-import io.documentnode.epub4j.domain.Resources;
+import io.documentnode.epub4j.domain.*;
 import io.documentnode.epub4j.util.CollectionUtil;
 import io.documentnode.epub4j.util.ResourceUtil;
 import io.documentnode.minilog.Logger;
+import net.lingala.zip4j.ZipFile;
+import net.lingala.zip4j.io.inputstream.ZipInputStream;
+import net.lingala.zip4j.model.FileHeader;
+import net.lingala.zip4j.model.LocalFileHeader;
+
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Enumeration;
 import java.util.List;
-import net.sf.jazzlib.ZipEntry;
-import net.sf.jazzlib.ZipException;
-import net.sf.jazzlib.ZipFile;
-import net.sf.jazzlib.ZipInputStream;
 
 /**
  * Loads Resources from inputStreams, ZipFiles, etc
  *
  * @author paul
- *
  */
 public class ResourcesLoader {
 
@@ -48,24 +41,23 @@ public class ResourcesLoader {
       List<MediaType> lazyLoadedTypes) throws IOException {
 
     LazyResourceProvider resourceProvider =
-        new EpubResourceProvider(zipFile.getName());
+        new EpubResourceProvider(zipFile.getFile().getAbsolutePath());
 
     Resources result = new Resources();
-    Enumeration<? extends ZipEntry> entries = zipFile.entries();
+    var entries = zipFile.getFileHeaders();
 
-    while (entries.hasMoreElements()) {
-      ZipEntry zipEntry = entries.nextElement();
+    for (FileHeader zipEntry : entries) {
 
       if (zipEntry == null || zipEntry.isDirectory()) {
         continue;
       }
 
-      String href = zipEntry.getName();
+      String href = zipEntry.getFileName();
 
       Resource resource;
 
       if (shouldLoadLazy(href, lazyLoadedTypes)) {
-        resource = new LazyResource(resourceProvider, zipEntry.getSize(), href);
+        resource = new LazyResource(resourceProvider, zipEntry.getUncompressedSize(), href);
       } else {
         resource = ResourceUtil
             .createResource(zipEntry, zipFile.getInputStream(zipEntry));
@@ -113,7 +105,7 @@ public class ResourcesLoader {
   public static Resources loadResources(ZipInputStream zipInputStream,
       String defaultHtmlEncoding) throws IOException {
     Resources result = new Resources();
-    ZipEntry zipEntry;
+    LocalFileHeader zipEntry;
     do {
       // get next valid zipEntry
       zipEntry = getNextZipEntry(zipInputStream);
@@ -133,19 +125,15 @@ public class ResourcesLoader {
   }
 
 
-  private static ZipEntry getNextZipEntry(ZipInputStream zipInputStream)
+  private static LocalFileHeader getNextZipEntry(ZipInputStream zipInputStream)
       throws IOException {
     try {
       return zipInputStream.getNextEntry();
-    } catch (ZipException e) {
+    } catch (IOException e) {
       //see <a href="https://github.com/psiegman/epublib/issues/122">Issue #122 Infinite loop</a>.
       //when reading a file that is not a real zip archive or a zero length file, zipInputStream.getNextEntry()
       //throws an exception and does not advance, so loadResources enters an infinite loop
       log.error("Invalid or damaged zip file.", e);
-      try {
-        zipInputStream.closeEntry();
-      } catch (Exception ignored) {
-      }
       throw e;
     }
   }
