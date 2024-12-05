@@ -43,6 +43,17 @@ gversion {
 }
 project.compileJava.dependsOn(createVersionFile)
 
+tasks.withType(Javadoc) {
+  options.addBooleanOption('Xdoclint:none', true)
+  options.addStringOption('sourcepath', '')
+  options.addBooleanOption('html5', true)
+}
+
+java {
+  withJavadocJar()
+  withSourcesJar()
+}
+
 signing {
   sign publishing.publications
 }
