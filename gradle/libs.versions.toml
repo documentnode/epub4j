@@ -1,0 +1,37 @@
+[versions]
+dn-minilog = "1.0"
+kxml2 = "2.3.0"
+xmlpull = "1.1.3.4d_b4_min"
+zip4j = "2.11.5"
+htmlcleaner = "2.2"
+commons-vfs = "1.0"
+commons-lang = "2.4"
+commons-io = "2.0.1"
+
+junit4 = "4.13.2"
+mockito = "3.6.0"
+
+# https://github.com/lessthanoptimal/gversion-plugin
+gversion-plugin = "1.10.3"
+# https://plugins.gradle.org/plugin/com.gradleup.shadow
+shadow-plugin = "8.3.5"
+# https://github.com/allegro/axion-release-plugin
+axion-release-plugin = "1.18.14"
+
+[libraries]
+dn-minilog = { module = "io.documentnode:minilog", version.ref = "dn-minilog" }
+kxml2 = { module = "net.sf.kxml:kxml2", version.ref = "kxml2" }
+xmlpull = { module = "xmlpull:xmlpull", version.ref = "xmlpull" }
+zip4j = { module = "net.lingala.zip4j:zip4j", version.ref = "zip4j" }
+htmlcleaner = { module = "net.sourceforge.htmlcleaner:htmlcleaner", version.ref = "htmlcleaner" }
+commons-vfs = { module = "commons-vfs:commons-vfs", version.ref = "commons-vfs" }
+commons-lang = { module = "commons-lang:commons-lang", version.ref = "commons-lang" }
+commons-io = { module = "commons-io:commons-io", version.ref = "commons-io" }
+
+junit4 = { module = "junit:junit", version.ref = "junit4" }
+mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockito" }
+
+[plugins]
+gversion = { id = "com.peterabeles.gversion", version.ref = "gversion-plugin" }
+shadow = { id = "com.gradleup.shadow", version.ref = "shadow-plugin" }
+axion-release = { id = "pl.allegro.tech.build.axion-release", version.ref = "axion-release-plugin" }

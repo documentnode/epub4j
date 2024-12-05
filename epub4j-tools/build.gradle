@@ -1,0 +1,35 @@
+plugins {
+  id 'application'
+
+  alias(libs.plugins.shadow)
+}
+
+dependencies {
+  implementation project(':epub4j-core')
+
+  implementation(libs.htmlcleaner) {
+    exclude group: 'org.jdom', module: 'jdom'
+    exclude group: 'org.apache.ant', module: 'ant'
+  }
+  implementation(libs.commons.vfs)
+  implementation(libs.commons.lang)
+  implementation(libs.commons.io)
+}
+
+application {
+  mainClass = 'io.documentnode.epub4j.Fileset2Epub'
+}
+
+// Required by the 'shadowJar' task
+project.ext.mainClassName = "io.documentnode.epub4j.Fileset2Epub"
+
+tasks.withType(com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar) {
+  manifest {
+    attributes(
+        "Implementation-Title": "Fileset2Epub Command Line Tool",
+        // Uncomment and replace `version` with the actual version if needed
+        // "Implementation-Version": version,
+        "Main-Class": "io.documentnode.epub4j.Fileset2Epub"
+    )
+  }
+}
