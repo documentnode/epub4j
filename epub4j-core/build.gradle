@@ -55,15 +55,15 @@ tasks.withType(Sign).configureEach {
   }
 }
 
-def ossrU = project.hasProperty("ossrhToken") ? ossrhToken : ""
-def ossrP = project.hasProperty("ossrhTokenPassword") ? ossrhTokenPassword : ""
+def ossrU = project.hasProperty("ossrhToken2") ? ossrhToken2 : ""
+def ossrP = project.hasProperty("ossrhTokenPassword2") ? ossrhTokenPassword2 : ""
 
 publishing {
   publications {
     mavenJava(MavenPublication) {
       from components.java
       groupId = 'io.documentnode'
-      artifactId = 'epub4j'
+      artifactId = 'epub4j-core'
       version = project.version
       pom {
         name = 'epub4j'
@@ -97,8 +97,8 @@ publishing {
   repositories {
     mavenLocal()
     maven {
-      def releasesRepoUrl = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
-      def snapshotsRepoUrl = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+      def releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+      def snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots/"
       url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
       credentials {
         username = ossrU
