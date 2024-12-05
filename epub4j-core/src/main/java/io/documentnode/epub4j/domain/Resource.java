@@ -91,7 +91,7 @@ public class Resource implements Serializable {
    *
    * Assumes that if the data is of a text type (html/css/etc) then the encoding will be UTF-8
    *
-   * It is recommended to us the {@link #Resource(Reader, String)} method for creating textual
+   * It is recommended to use the {@code #Resource(Reader, String)} method for creating textual
    * (html/css/etc) resources to prevent encoding problems.
    * Use this method only for binary Resources like images, fonts, etc.
    *

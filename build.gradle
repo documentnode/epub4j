@@ -33,7 +33,7 @@ subprojects {
     mavenCentral()
   }
 
-  def javaVersion = JavaVersion.VERSION_11
+  def javaVersion = JavaVersion.VERSION_17
   java {
     toolchain {
       languageVersion = JavaLanguageVersion.of(javaVersion.toString())
