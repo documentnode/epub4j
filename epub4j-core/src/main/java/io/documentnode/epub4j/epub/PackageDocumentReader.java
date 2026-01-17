@@ -369,6 +369,11 @@ public class PackageDocumentReader extends PackageDocumentBase {
               OPFTags.item, OPFAttributes.id, coverResourceId,
               OPFAttributes.href);
       if (StringUtil.isNotBlank(coverHref)) {
+        try {
+            coverHref = URLDecoder.decode(coverHref, Constants.CHARACTER_ENCODING);
+        } catch (UnsupportedEncodingException e) {
+          log.error(e.getMessage());
+        }
         result.add(coverHref);
       } else {
         result.add(
@@ -381,6 +386,11 @@ public class PackageDocumentReader extends PackageDocumentBase {
             OPFTags.reference, OPFAttributes.type, OPFValues.reference_cover,
             OPFAttributes.href);
     if (StringUtil.isNotBlank(coverHref)) {
+      try {
+        coverHref = URLDecoder.decode(coverHref, Constants.CHARACTER_ENCODING);
+      } catch (UnsupportedEncodingException e) {
+        log.error(e.getMessage());
+      }
       result.add(coverHref);
     }
     return result;
