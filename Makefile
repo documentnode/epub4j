@@ -30,5 +30,12 @@ publish: build
 	$(SDK) ./gradlew publishToMavenLocal --warning-mode all
 
 publish-remote: publish
-	$(SDK) ./gradlew publishMavenJavaPublicationToMavenRepository --warning-mode all
+	$(SDK) ./gradlew publishMavenJavaPublicationToMavenCentralRepository --warning-mode all
+
+publish-central: publish-remote
+	@echo "Uploading staging repository to Maven Central Portal..."
+	@curl -X POST \
+		"https://ossrh-staging-api.central.sonatype.com/manual/upload/defaultRepository/io.documentnode?publishing_type=automatic" \
+		-H "Authorization: Bearer $$(echo -n "$$SONATYPE_CENTRAL_USERNAME:$$SONATYPE_CENTRAL_PASSWORD" | base64)"
+	@echo "\nDone. Check https://central.sonatype.com/publishing/deployments for status."
 

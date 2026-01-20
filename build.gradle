@@ -30,6 +30,8 @@ scmVersion {
   }
 }
 
+version = scmVersion.version
+
 allprojects {
   group = 'io.documentnode'
   project.version = rootProject.version

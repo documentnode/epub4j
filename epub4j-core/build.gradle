@@ -66,8 +66,8 @@ tasks.withType(Sign).configureEach {
   }
 }
 
-def ossrU = project.hasProperty("ossrhToken2") ? ossrhToken2 : ""
-def ossrP = project.hasProperty("ossrhTokenPassword2") ? ossrhTokenPassword2 : ""
+def centralUser = project.findProperty("centralPortalUsername") ?: ""
+def centralPass = project.findProperty("centralPortalPassword") ?: ""
 
 publishing {
   publications {
@@ -108,12 +108,11 @@ publishing {
   repositories {
     mavenLocal()
     maven {
-      def releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
-      def snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots/"
-      url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+      name = "MavenCentral"
+      url = "https://ossrh-staging-api.central.sonatype.com/service/local/staging/deploy/maven2/"
       credentials {
-        username = ossrU
-        password = ossrP
+        username = centralUser
+        password = centralPass
       }
     }
   }
