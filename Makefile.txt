@@ -9,5 +9,6 @@ build           Build projects with tests
 build-fast      Build projects without tests
 release         Release a new version for projects
 publish         Publish libraries to Maven local
-publish-remote  Publish libraries to Maven Central
+publish-remote  Publish libraries to Maven Central staging
+publish-central Publish libraries to Maven Central (auto-release)
 

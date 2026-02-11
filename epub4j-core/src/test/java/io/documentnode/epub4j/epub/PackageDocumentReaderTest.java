@@ -8,6 +8,8 @@ import io.documentnode.epub4j.domain.MediaTypes;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -28,7 +30,17 @@ public class PackageDocumentReaderTest {
 		assertEquals(1, coverHrefs.size());
 		assertEquals("cover.html", coverHrefs.iterator().next());
 	}
-	
+
+	@Test
+	public void testFindCoverHref_URLEncoded() throws SAXException, IOException {
+		Set<String> expected = new HashSet<>(Arrays.asList("cover+.png", "cover+.html"));
+		Document packageDocument;
+		packageDocument = EpubProcessorSupport.createDocumentBuilder().parse(PackageDocumentReaderTest.class.getResourceAsStream("/opf/test_urlencoded_href.opf"));
+		Collection<String> coverHrefs = PackageDocumentReader.findCoverHrefs(packageDocument);
+		assertEquals(2, coverHrefs.size());
+		assertEquals(expected, coverHrefs);
+	}
+
 	@Test
 	public void testFindTableOfContentsResource_simple_correct_toc_id() {
 		// given
