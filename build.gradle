@@ -50,21 +50,15 @@ subprojects {
     mavenCentral()
   }
 
+  // The toolchain below guarantees compilation with JDK 17 regardless of the
+  // JVM running Gradle, so no launcher-JVM version check is needed. This keeps
+  // the build usable as an includeBuild of consumers on newer JDKs.
   def javaVersion = JavaVersion.VERSION_17
   java {
     toolchain {
       languageVersion = JavaLanguageVersion.of(javaVersion.toString())
     }
   }
-  task enforceVersion {
-    doLast {
-      def foundVersion = JavaVersion.current()
-      if (foundVersion != javaVersion)
-        throw new IllegalStateException("Wrong Java version; required is "
-            + javaVersion + ", but found " + foundVersion)
-    }
-  }
-  compileJava.dependsOn(enforceVersion)
 
   dependencies {
     implementation libs.dn.minilog
