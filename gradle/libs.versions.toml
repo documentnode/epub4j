@@ -9,7 +9,7 @@ commons-lang = "2.4"
 commons-io = "2.0.1"
 
 junit4 = "4.13.2"
-mockito = "3.6.0"
+mockito = "5.23.0"
 
 # https://github.com/lessthanoptimal/gversion-plugin
 gversion-plugin = "1.10.3"
